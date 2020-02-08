@@ -3,6 +3,7 @@ import "./App.css";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import ListingList from "./components/ListingList";
+import Buy from "./components/PurchaseFlow/Buy"
 import NavigationBar from "./components/NavigationBar";
 import ProduceFilter from "./components/ProduceFilter";
 import React from "react";
@@ -18,7 +19,9 @@ const App = () => {
           <Route path="/sell">
             <UploadForm />
           </Route>
-          <Route path="/buy"></Route>
+          <Route path="/buy">
+            <Buy />
+          </Route>
           <Route path="/">
             <ProduceFilter produceCategories={data.produce_categories} />
             <ListingList listings={data.listings} />
