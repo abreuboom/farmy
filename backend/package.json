@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"tsc -watch\" \"nodemon ./build/main.js\""
+    "dev": "concurrently \"tsc -watch\" \"nodemon ./build/main.js\"",
+    "prov": "knex migrate:latest && knex seed:all"
   },
   "author": "Jeong Yeon Cho",
   "license": "MIT",

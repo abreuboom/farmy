@@ -1,2 +1,2 @@
-release: knex migrate:latest && knex seed:all
+release: npm prov
 web: node ./build/main.js
