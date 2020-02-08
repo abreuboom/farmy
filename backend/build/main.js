@@ -52,10 +52,13 @@ var knex_1 = __importDefault(require("knex"));
 // @ts-ignore
 var knexConfig = __importStar(require("../knexfile"));
 require("dotenv").config();
-var db = knex_1.default(knexConfig.development);
+var db;
 if (process.env.NODE_ENV != "development") {
     console.log(knexConfig);
     db = knex_1.default(knexConfig.staging);
+}
+else {
+    db = knex_1.default(knexConfig.development);
 }
 var app = express_1.default();
 app.use(body_parser_1.default.json());

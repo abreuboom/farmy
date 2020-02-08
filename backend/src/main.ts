@@ -6,12 +6,14 @@ import * as knexConfig from "../knexfile";
 
 require("dotenv").config();
 
-var db = knex(knexConfig.development);
+var db: knex<any, unknown[]>;
 
 if (process.env.NODE_ENV != "development") {
   console.log(knexConfig);
 
   db = knex(knexConfig.staging);
+} else {
+  db = knex(knexConfig.development);
 }
 
 let app = express();
