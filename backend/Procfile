@@ -1,2 +1,2 @@
-release: knex migrate:latest
-web: node ./backend/build/main.js
+release: knex migrate:latest && knex seed:all
+web: node ./build/main.js
