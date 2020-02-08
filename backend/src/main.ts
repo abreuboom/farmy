@@ -71,6 +71,6 @@ app.get("/requests", async (req, res) => {
   );
 });
 
-app.listen(9999, () => {
-  console.log("Listening on 9999");
+app.listen(process.env.PORT, () => {
+  console.log("Listening on " + process.env.PORT);
 });
