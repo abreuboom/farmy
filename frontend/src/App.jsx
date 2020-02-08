@@ -11,7 +11,7 @@ const App = () => {
     <div className="App">
       <NavigationBar />
       <ProduceFilter produceCategories={data.produce_categories} />
-      <ListingList />
+      <ListingList listings={data.listings} />
     </div>
   );
 };
