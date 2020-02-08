@@ -1,0 +1,26 @@
+{
+    "listings": [{
+        "title": "fresh tomatoes for sale",
+        "date_posted": "12-12-2012",
+        "price": "$2 per lb",
+        "produce_type": "tomato",
+        "img_url": "google.com"
+    }, {
+        "title": "fresh tomatoes for sale",
+        "date_posted": "12-12-2012",
+        "price": "$2 per lb",
+        "produce_type": "tomato",
+        "img_url": "google.com"
+    }],
+    "produce_categories": [{
+            "name": "tomato"
+        },
+        {
+            "name": "potato"
+        }, {
+            "name": "carrot"
+        }, {
+            "name": "exotic asian pear"
+        }
+    ]
+}
