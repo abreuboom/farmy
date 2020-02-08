@@ -7,12 +7,12 @@ import * as knexConfig from "../knexfile";
 require("dotenv").config();
 
 var db: knex<any, unknown[]>;
-console.log(knexConfig);
 
 if (process.env.NODE_ENV != "development") {
-  console.log(knexConfig);
-
-  db = knex(knexConfig.staging);
+  db = knex({
+    client: "pg",
+    connection: process.env.DATABASE_URL
+  });
 } else {
   db = knex(knexConfig.development);
 }
@@ -68,6 +68,6 @@ app.get("/requests", async (req, res) => {
   );
 });
 
-app.listen(9999, () => {
-  console.log("Listening on 9999");
+app.listen(process.env.PORT, () => {
+  console.log("Listening on " + process.env.PORT);
 });

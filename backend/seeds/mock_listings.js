@@ -1,13 +1,10 @@
-import * as Knex from "knex";
-
-export async function seed(knex: Knex): Promise<any> {
+async function seed(knex) {
   // Deletes ALL existing entries
   return knex("Listing")
     .del()
     .then(() => {
       // Inserts seed entries
-      return knex("Listing").insert([
-        {
+      return knex("Listing").insert([{
           quantity: 1,
           units: "count",
           img_link: "#",
@@ -33,4 +30,7 @@ export async function seed(knex: Knex): Promise<any> {
         }
       ]);
     });
+}
+module.exports = {
+  seed
 }

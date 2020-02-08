@@ -53,10 +53,11 @@ var knex_1 = __importDefault(require("knex"));
 var knexConfig = __importStar(require("../knexfile"));
 require("dotenv").config();
 var db;
-console.log(knexConfig);
 if (process.env.NODE_ENV != "development") {
-    console.log(knexConfig);
-    db = knex_1.default(knexConfig.staging);
+    db = knex_1.default({
+        client: "pg",
+        connection: process.env.DATABASE_URL
+    });
 }
 else {
     db = knex_1.default(knexConfig.development);
@@ -147,6 +148,6 @@ app.get("/requests", function (req, res) { return __awaiter(void 0, void 0, void
         }
     });
 }); });
-app.listen(9999, function () {
-    console.log("Listening on 9999");
+app.listen(process.env.PORT, function () {
+    console.log("Listening on " + process.env.PORT);
 });

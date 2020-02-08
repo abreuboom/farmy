@@ -37,6 +37,7 @@
     "knex": "^0.20.8",
     "nodemon": "^2.0.2",
     "react-router": "^5.1.2",
+    "pg": "^7.18.1",
     "react-router-dom": "^5.1.2",
     "ts-node": "^8.6.2",
     "typescript": "^3.7.5",

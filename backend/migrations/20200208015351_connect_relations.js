@@ -1,7 +1,11 @@
-import * as Knex from "knex";
-const sequence = require("when/sequence");
-
-export async function up(knex: Knex): Promise<any> {
+async function up(knex) {
+  await knex.schema.dropTable("Produce");
+  await knex.schema.createTable("Produce", table => {
+    table.increments("produce_id").primary();
+    table.string("name").unique();
+    table.integer("category").notNullable();
+    table.foreign("category").references("Category.category_id");
+  });
   await knex.schema.dropTable("User");
   await knex.schema.createTable("User", table => {
     table.increments("id").primary();
@@ -41,16 +45,10 @@ export async function up(knex: Knex): Promise<any> {
       table.integer("produce").notNullable();
       table.foreign("produce").references("Produce.produce_id");
     });
-  await knex.schema.dropTable("Produce");
-  await knex.schema.createTable("Produce", table => {
-    table.increments("produce_id").primary();
-    table.string("name").unique();
-    table.integer("category").notNullable();
-    table.foreign("category").references("Category.category_id");
-  });
+
 }
 
-export async function down(knex: Knex): Promise<any> {
+async function down(knex) {
   return knex.schema
     .alterTable("User", table => {
       table.dropColumn("address_id");
@@ -66,4 +64,9 @@ export async function down(knex: Knex): Promise<any> {
     .alterTable("Produce", table => {
       table.dropColumn("category");
     });
+}
+
+module.exports = {
+  up,
+  down
 }

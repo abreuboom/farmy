@@ -1,13 +1,10 @@
-import * as Knex from "knex";
-
-export async function seed(knex: Knex): Promise<any> {
+async function seed(knex) {
   // Deletes ALL existing entries
   return knex("Address")
     .del()
     .then(() => {
       // Inserts seed entries
-      return knex("Address").insert([
-        {
+      return knex("Address").insert([{
           line_one: "1 1st Street",
           line_two: "apt 1",
           zip_code: "11111",
@@ -21,4 +18,7 @@ export async function seed(knex: Knex): Promise<any> {
         }
       ]);
     });
+}
+module.exports = {
+  seed
 }
