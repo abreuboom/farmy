@@ -50,7 +50,7 @@ var express_1 = __importDefault(require("express"));
 var body_parser_1 = __importDefault(require("body-parser"));
 var knex_1 = __importDefault(require("knex"));
 // @ts-ignore
-var knexConfig = __importStar(require("../../knexfile"));
+var knexConfig = __importStar(require("../knexfile"));
 require("dotenv").config();
 var db;
 console.log(knexConfig);
