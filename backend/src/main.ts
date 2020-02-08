@@ -7,11 +7,8 @@ import * as knexConfig from "../knexfile";
 require("dotenv").config();
 
 var db: knex<any, unknown[]>;
-console.log(knexConfig);
 
 if (process.env.NODE_ENV != "development") {
-  console.log(knexConfig);
-
   db = knex({
     client: "pg",
     connection: process.env.DATABASE_URL
