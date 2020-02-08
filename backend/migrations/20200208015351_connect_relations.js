@@ -1,4 +1,11 @@
 async function up(knex) {
+  await knex.schema.dropTable("Produce");
+  await knex.schema.createTable("Produce", table => {
+    table.increments("produce_id").primary();
+    table.string("name").unique();
+    table.integer("category").notNullable();
+    table.foreign("category").references("Category.category_id");
+  });
   await knex.schema.dropTable("User");
   await knex.schema.createTable("User", table => {
     table.increments("id").primary();
@@ -38,13 +45,7 @@ async function up(knex) {
       table.integer("produce").notNullable();
       table.foreign("produce").references("Produce.produce_id");
     });
-  await knex.schema.dropTable("Produce");
-  await knex.schema.createTable("Produce", table => {
-    table.increments("produce_id").primary();
-    table.string("name").unique();
-    table.integer("category").notNullable();
-    table.foreign("category").references("Category.category_id");
-  });
+
 }
 
 async function down(knex) {
