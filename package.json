@@ -1,0 +1,23 @@
+{
+  "name": "farmy",
+  "version": "0.0.1",
+  "description": "Home garden produce buying selling marketplace webapp",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abreuboom/farmy.git"
+  },
+  "keywords": [
+    "react",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abreuboom/farmy/issues"
+  },
+  "homepage": "https://github.com/abreuboom/farmy#readme"
+}
