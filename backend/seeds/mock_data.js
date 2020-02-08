@@ -1,12 +1,10 @@
 async function seed(knex) {
-  await knex.schema.raw("SET FOREIGN_KEY_CHECKS = 0");
   await knex("Listing").truncate();
   await knex("Request").truncate();
   await knex("Produce").truncate();
   await knex("Category").truncate();
   await knex("User").truncate();
   await knex("Address").truncate();
-  await knex.schema.raw("SET FOREIGN_KEY_CHECKS = 1");
 
   await knex("Category").insert([
     {

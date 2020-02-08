@@ -53,6 +53,7 @@ var knex_1 = __importDefault(require("knex"));
 var knexConfig = __importStar(require("../knexfile"));
 require("dotenv").config();
 var db;
+console.log(knexConfig);
 if (process.env.NODE_ENV != "development") {
     db = knex_1.default({
         client: "pg",
