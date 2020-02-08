@@ -1,4 +1,4 @@
-export async function up(knex) {
+async function up(knex) {
   return knex.schema
     .createTable("User", table => {
       table.increments("id").primary();
@@ -39,8 +39,7 @@ export async function up(knex) {
       table.string("name").unique();
     });
 }
-
-export async function down(knex) {
+async function down(knex) {
   return knex.schema
     .dropTable("User")
     .dropTable("Address")
@@ -48,4 +47,8 @@ export async function down(knex) {
     .dropTable("Listing")
     .dropTable("Produce")
     .dropTable("Category");
+}
+module.exports = {
+  up,
+  down
 }

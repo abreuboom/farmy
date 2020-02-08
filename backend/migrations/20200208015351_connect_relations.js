@@ -1,4 +1,4 @@
-export async function up(knex) {
+async function up(knex) {
   await knex.schema.dropTable("User");
   await knex.schema.createTable("User", table => {
     table.increments("id").primary();
@@ -47,7 +47,7 @@ export async function up(knex) {
   });
 }
 
-export async function down(knex) {
+async function down(knex) {
   return knex.schema
     .alterTable("User", table => {
       table.dropColumn("address_id");
@@ -63,4 +63,9 @@ export async function down(knex) {
     .alterTable("Produce", table => {
       table.dropColumn("category");
     });
+}
+
+module.exports = {
+  up,
+  down
 }
