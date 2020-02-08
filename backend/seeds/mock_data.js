@@ -1,5 +1,11 @@
 async function seed(knex) {
+  await knex("Listing").del();
+  await knex("Request").del();
+  await knex("Produce").del();
   await knex("Category").del();
+  await knex("User").del();
+  await knex("Address").del();
+
   await knex("Category").insert([
     {
       name: "Fruit"
@@ -9,7 +15,6 @@ async function seed(knex) {
     }
   ]);
 
-  await knex("Produce").del();
   await knex("Produce").insert([
     {
       name: "Apple",
@@ -29,7 +34,6 @@ async function seed(knex) {
     }
   ]);
 
-  await knex("Address").del();
   await knex("Address").insert([
     {
       line_one: "1 1st Street",
@@ -44,7 +48,6 @@ async function seed(knex) {
       state: "BB"
     }
   ]);
-  await knex("User").del();
   await knex("User").insert([
     {
       username: "test1",
@@ -70,7 +73,6 @@ async function seed(knex) {
       phone_num: 3333333333
     }
   ]);
-  await knex("Listing").del();
   await knex("Listing").insert([
     {
       quantity: 1,
@@ -97,7 +99,6 @@ async function seed(knex) {
       produce: 2
     }
   ]);
-  await knex("Request").del();
   return knex("Request").insert([
     {
       quantity: 1,
