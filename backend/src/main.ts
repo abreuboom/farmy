@@ -9,6 +9,8 @@ require("dotenv").config();
 var db = knex(knexConfig.development);
 
 if (process.env.NODE_ENV != "development") {
+  console.log(knexConfig);
+
   db = knex(knexConfig.staging);
 }
 

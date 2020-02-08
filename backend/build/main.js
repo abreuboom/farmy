@@ -54,6 +54,7 @@ var knexConfig = __importStar(require("../knexfile"));
 require("dotenv").config();
 var db = knex_1.default(knexConfig.development);
 if (process.env.NODE_ENV != "development") {
+    console.log(knexConfig);
     db = knex_1.default(knexConfig.staging);
 }
 var app = express_1.default();
