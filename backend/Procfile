@@ -1,2 +1,2 @@
-release: npm prov
+release: npm run prov
 web: node ./build/main.js
