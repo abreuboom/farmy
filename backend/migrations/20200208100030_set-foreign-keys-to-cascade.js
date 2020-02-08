@@ -1,4 +1,3 @@
-
 exports.up = async function(knex) {
   await knex.schema.alterTable("User", table => {
     table.dropForeign("address_id");
@@ -24,25 +23,18 @@ exports.up = async function(knex) {
   });
 };
 
-exports.down = function(knex) {
+exports.down = async function(knex) {
   await knex.schema.alterTable("User", table => {
     table.dropForeign("address_id");
-    table
-      .foreign("address_id")
-      .references("Address.address_id")
+    table.foreign("address_id").references("Address.address_id");
   });
   await knex.schema.alterTable("Listing", table => {
     table.dropForeign("lister");
-    table
-      .foreign("lister")
-      .references("User.id")
+    table.foreign("lister").references("User.id");
   });
 
   await knex.schema.alterTable("Request", table => {
     table.dropForeign("requester");
-    table
-      .foreign("requester")
-      .references("User.id")
+    table.foreign("requester").references("User.id");
   });
-
 };
