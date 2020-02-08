@@ -1,6 +1,3 @@
-import * as Knex from "knex";
-
-
 async function seed(knex) {
   // Deletes ALL existing entries
   return knex("Address")
