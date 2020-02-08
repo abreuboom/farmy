@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 export default class Listing extends Component {
@@ -22,7 +23,14 @@ export default class Listing extends Component {
             <p>{this.props.price}</p>
           </div>
           <button className="listing-button">
-            <FontAwesomeIcon icon={faEye} />
+            <Link
+              to={{
+                pathname: `listing?id=${this.props.id}`,
+                query: "/listing/"
+              }}
+            >
+              <FontAwesomeIcon icon={faEye} />
+            </Link>
           </button>
         </div>
       </div>

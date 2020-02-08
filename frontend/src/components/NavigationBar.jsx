@@ -7,21 +7,20 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { NavLink } from "react-router-dom";
 
 export default class NavigationBar extends Component {
   render() {
     return (
       <div className="container">
         <div className="nav-bar">
-          <a href="" className="">
-            {" "}
+          <NavLink activeClassName="active" to="/sell">
             <FontAwesomeIcon icon={faSeedling} />
-          </a>
+          </NavLink>
           <h1>farmy</h1>
-          <a href="" className="active">
-            {" "}
+          <NavLink activeClassName="active" to="/">
             <FontAwesomeIcon icon={faShoppingBasket} />
-          </a>
+          </NavLink>
         </div>
       </div>
     );
