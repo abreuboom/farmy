@@ -1,0 +1,25 @@
+.nav-bar {
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 600px;
+  max-width: 90%;
+  margin: 0 auto;
+}
+.nav-bar h1 {
+  flex-grow: 2;
+  color: #80db55;
+}
+
+.active {
+  color: #80db55;
+}
+
+a {
+  color: #c2c2c2;
+  font-size: 32px;
+  padding: 0px 10px;
+}
+
+/*# sourceMappingURL=navigation.css.map */
