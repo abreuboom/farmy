@@ -1,7 +1,4 @@
-import * as Knex from "knex";
-const sequence = require("when/sequence");
-
-export async function up(knex: Knex): Promise<any> {
+export async function up(knex) {
   await knex.schema.dropTable("User");
   await knex.schema.createTable("User", table => {
     table.increments("id").primary();
@@ -50,7 +47,7 @@ export async function up(knex: Knex): Promise<any> {
   });
 }
 
-export async function down(knex: Knex): Promise<any> {
+export async function down(knex) {
   return knex.schema
     .alterTable("User", table => {
       table.dropColumn("address_id");
