@@ -1,2 +1,2 @@
-release: knex migrate:latest --knexConfig ./backend/knexfile.js
+release: knex migrate:latest --knexfile ./backend/knexfile.js
 web: node ./backend/build/main.js
