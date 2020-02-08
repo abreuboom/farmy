@@ -4,13 +4,13 @@
         "date_posted": "12-12-2012",
         "price": "$2 per lb",
         "produce_type": "tomato",
-        "img_url": "google.com"
+        "img_url": "https://www.6amgroup.com/wp-content/uploads/2015/07/shaq-feat.jpg"
     }, {
         "title": "fresh tomatoes for sale",
         "date_posted": "12-12-2012",
         "price": "$2 per lb",
         "produce_type": "tomato",
-        "img_url": "google.com"
+        "img_url": "https://www.wafb.com/resizer/iOXJhvMvBprbiimnLGVNp322yCI=/1200x0/arc-anglerfish-arc2-prod-raycom.s3.amazonaws.com/public/55BNP657VZCFPFJWJON2Z3QAVI.jpg"
     }],
     "produce_categories": [{
             "name": "tomato"

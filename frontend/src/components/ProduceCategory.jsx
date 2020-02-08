@@ -4,7 +4,7 @@ export default class ProduceCategory extends Component {
   render() {
     return (
       <div className="produce-category">
-        <p>{this.props.name}</p>
+        <p className="caps">{this.props.name}</p>
       </div>
     );
   }
