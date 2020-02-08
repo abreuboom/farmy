@@ -8,9 +8,9 @@ export default class ListingList extends Component {
   listings = this.props.listings;
   render() {
     return (
-      <div className="listing-list-container">
+      <div className="listings-list-container container">
         <div className="listings-container">
-          <p>Produce near you</p>
+          <p className="listings-title">Produce near you</p>
           <div className="listing-list">
             {this.listings.map(function(listing, i) {
               return <Listing {...listing} key={i} />;

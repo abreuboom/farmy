@@ -1,11 +1,8 @@
-.listing-list-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
+.listings-list-container {
+  margin-top: 25px;
 }
 
 .listings-container {
-  position: absolute;
   width: 600px;
   max-width: 90%;
   left: 0;
@@ -15,6 +12,11 @@
 }
 .listings-container p {
   text-align: left;
+}
+
+.listings-title {
+  font-size: 1.5rem;
+  padding-top: 25px;
 }
 
 .listing-list {
