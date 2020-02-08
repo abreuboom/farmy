@@ -1,4 +1,4 @@
-export async function seed(knex) {
+async function seed(knex) {
   // Deletes ALL existing entries
   return knex("Request")
     .del()
