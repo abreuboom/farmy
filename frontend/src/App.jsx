@@ -3,6 +3,7 @@ import "./App.css";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import ListingList from "./components/ListingList";
+import Buy from "./components/PurchaseFlow/Buy"
 import ListingPage from "./components/ListingPage";
 import NavigationBar from "./components/NavigationBar";
 import ProduceFilter from "./components/ProduceFilter";
@@ -22,6 +23,9 @@ const App = () => {
         <Switch>
           <Route path="/sell">
             <UploadForm />
+          </Route>
+          <Route path="/buy">
+            <Buy />
           </Route>
           <Route path="/listing/">
             <ListingPage {...getListingById(listingId)} />
