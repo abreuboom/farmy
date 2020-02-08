@@ -6,7 +6,7 @@ import ListingList from "./components/ListingList";
 import NavigationBar from "./components/NavigationBar";
 import ProduceFilter from "./components/ProduceFilter";
 import React from "react";
-import UploadForm from "./components/Upload/UploadForm";
+import UploadForm from "./components/UploadForm";
 import data from "./dummy_data.json";
 
 const App = () => {
