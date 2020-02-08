@@ -56,7 +56,10 @@ var db;
 console.log(knexConfig);
 if (process.env.NODE_ENV != "development") {
     console.log(knexConfig);
-    db = knex_1.default(knexConfig.staging);
+    db = knex_1.default({
+        client: "pg",
+        connection: process.env.DATABASE_URL
+    });
 }
 else {
     db = knex_1.default(knexConfig.development);
