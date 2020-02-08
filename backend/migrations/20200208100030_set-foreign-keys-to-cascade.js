@@ -3,23 +3,20 @@ exports.up = async function(knex) {
     table
       .foreign("address_id")
       .references("Address.address_id")
-      .onDelete("CASCADE")
-      .alter();
+      .onDelete("CASCADE");
   });
   await knex.schema.alterTable("Listing", table => {
     table
       .foreign("lister")
       .references("User.user_id")
-      .onDelete("CASCADE")
-      .alter();
+      .onDelete("CASCADE");
   });
 
   await knex.schema.alterTable("Request", table => {
     table
       .foreign("requester")
       .references("User.user_id")
-      .onDelete("CASCADE")
-      .alter();
+      .onDelete("CASCADE");
   });
 };
 
