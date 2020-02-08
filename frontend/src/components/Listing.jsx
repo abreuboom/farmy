@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+
 export default class Listing extends Component {
   render() {
     return (
@@ -14,10 +17,13 @@ export default class Listing extends Component {
           </div>
         </div>
         <div className="listing-content">
-          <h2>{this.props.title}</h2>
           <div className="listing-details">
+            <h2>{this.props.title}</h2> <br />
             <p>{this.props.price}</p>
           </div>
+          <button className="listing-button">
+            <FontAwesomeIcon icon={faEye} />
+          </button>
         </div>
       </div>
     );

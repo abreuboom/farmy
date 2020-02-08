@@ -8,7 +8,6 @@
 
 .container {
     background-color: white;
-
 }
 
 .nav-bar {
@@ -110,10 +109,15 @@
     right: 0;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
     text-align: left;
-
     color: white;
+
+
 
     h2 {
         display: inline;
@@ -122,12 +126,47 @@
 }
 
 .listing-details {
-    margin-bottom: 20px;
 
     p {
         display: inline;
         padding: 0;
     }
+}
+
+.listing-button {
+    display: block;
+    border-radius: 50%;
+    padding: 1rem 1rem;
+    font-size: 1.25rem;
+}
+
+// universal styles
+
+button {
+    display: inline-block;
+    border: none;
+    padding: 1rem 1.2rem;
+    margin: 0;
+    text-decoration: none;
+    background: $farmy-green;
+    color: white;
+    font-family: sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out,
+        transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+button:hover,
+button:focus {
+    background: $farmy-green;
+}
+
+button:active {
+    transform: scale(0.99);
 }
 
 // special styles
