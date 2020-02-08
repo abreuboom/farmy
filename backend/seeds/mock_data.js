@@ -1,10 +1,10 @@
 async function seed(knex) {
-  await knex("Listing").del();
-  await knex("Request").del();
-  await knex("Produce").del();
-  await knex("Category").del();
-  await knex("User").del();
-  await knex("Address").del();
+  await knex("Listing").truncate();
+  await knex("Request").truncate();
+  await knex("Produce").truncate();
+  await knex("Category").truncate();
+  await knex("User").truncate();
+  await knex("Address").truncate();
 
   await knex("Category").insert([
     {
