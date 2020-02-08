@@ -65,6 +65,7 @@
   background-size: cover;
   border-radius: 10px;
   overflow: hidden;
+  margin-bottom: 16px;
 }
 .listing img {
   width: 100%;
