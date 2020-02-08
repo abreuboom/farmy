@@ -1,5 +1,20 @@
+@import "colors";
+
 .App {
     text-align: center;
+    background-color: $bg-color;
+}
+
+.container {
+    background-color: white;
+
+}
+
+.nav-bar {
+
+    h1 {
+        color: $farmy-green;
+    }
 }
 
 .produce-filter {
@@ -8,6 +23,7 @@
     width: 700px;
     max-width: 90%;
     margin: 0 auto;
+    background-color: white;
 }
 
 .produce-category {
@@ -16,8 +32,8 @@
     margin-right: 5px;
 
     p {
-        color: white;
-        background-color: gray;
+        color: $btn-grey;
+        background-color: $bg-color;
         border-radius: 50px;
         padding: 10px;
     }

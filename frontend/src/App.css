@@ -1,5 +1,14 @@
 .App {
   text-align: center;
+  background-color: #f1f1f1;
+}
+
+.container {
+  background-color: white;
+}
+
+.nav-bar h1 {
+  color: #80db55;
 }
 
 .produce-filter {
@@ -8,6 +17,7 @@
   width: 700px;
   max-width: 90%;
   margin: 0 auto;
+  background-color: white;
 }
 
 .produce-category {
@@ -16,8 +26,8 @@
   margin-right: 5px;
 }
 .produce-category p {
-  color: white;
-  background-color: gray;
+  color: #c2c2c2;
+  background-color: #f1f1f1;
   border-radius: 50px;
   padding: 10px;
 }
