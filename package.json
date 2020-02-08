@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/abreuboom/farmy/issues"
   },
-  "homepage": "https://github.com/abreuboom/farmy#readme"
+  "homepage": "https://github.com/abreuboom/farmy#readme",
+  "devDependencies": {
+    "concurrently": "^5.1.0"
+  }
 }
