@@ -1,3 +1,4 @@
+
 exports.up = async function(knex) {
   await knex.schema.alterTable("User", table => {
     table.dropForeign("address_id");
