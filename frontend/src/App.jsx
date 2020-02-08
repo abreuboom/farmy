@@ -14,11 +14,12 @@ const App = () => {
       <Router>
         <NavigationBar />
         <Switch>
+          <Route path="/sell"></Route>
+          <Route path="/buy"></Route>
           <Route path="/">
             <ProduceFilter produceCategories={data.produce_categories} />
             <ListingList listings={data.listings} />
           </Route>
-          <Route path="/sell"></Route>
         </Switch>
       </Router>
     </div>
