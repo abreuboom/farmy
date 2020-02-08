@@ -2,7 +2,7 @@ import express from "express";
 import body_parser from "body-parser";
 import knex from "knex";
 // @ts-ignore
-import * as knexConfig from "../knexfile";
+import * as knexConfig from "../../knexfile";
 
 require("dotenv").config();
 
