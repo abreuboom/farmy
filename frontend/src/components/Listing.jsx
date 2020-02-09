@@ -6,6 +6,10 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { populateImg } from "../actions/storage";
 
 export default class Listing extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   createExpirationText() {
     var d = new Date(this.props.created_at);
 
@@ -21,7 +25,9 @@ export default class Listing extends Component {
   }
 
   render() {
-    let id = (this.props.produce[0].name + this.props.offer_id)
+    console.log(this.props);
+
+    let id = (this.props.produce.name + this.props.offer_id)
       .replace(/\s+/g, "")
       .toLowerCase();
     populateImg(this.props.img_link, id);

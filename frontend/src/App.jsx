@@ -15,6 +15,7 @@ import { userStore } from "./stores/UserStore";
 export default class App extends Component {
   constructor(props) {
     super(props);
+
     this.setFilter = this.setFilter.bind(this);
     this.state = {
       listings: [],
@@ -35,12 +36,8 @@ export default class App extends Component {
     });
   };
   getData = () => {
-    const pre = "https://cors-anywhere.herokuapp.com/";
-    const urls = [
-      "http://farme-2020.herokuapp.com/api/listings",
-      "http://farme-2020.herokuapp.com/api/produce"
-    ];
-    Promise.all(urls.map(url => fetch(pre + url).then(res => res.json()))).then(
+    const urls = ["/api/listings", "/api/produce"];
+    Promise.all(urls.map(url => fetch(url).then(res => res.json()))).then(
       data => {
         this.getAllUsers()
           .then(allUsers => {
@@ -105,14 +102,14 @@ export default class App extends Component {
                 let matchedListing = this.state.listings.find(
                   x => x.offer_id === parseInt(i)
                 );
+                let lister = this.state.users.find(x => {
+                  return x.username === matchedListing.lister.username;
+                });
+
+                console.log(this.state);
+
                 return (
-                  <Buy
-                    {...route}
-                    lister={this.state.users.find(
-                      x => x.username === matchedListing.lister[0].username
-                    )}
-                    listing={matchedListing}
-                  />
+                  <Buy {...route} lister={lister} listing={matchedListing} />
                 );
               }}
             ></Route>
