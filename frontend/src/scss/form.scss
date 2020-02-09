@@ -2,57 +2,55 @@
 @import "dimensions";
 
 .upload-form {
-    padding-top: 25px;
-    margin: 0 auto;
-    width: $master-width;
-    max-width: 90%;
-    text-align: left;
+  padding-top: 25px;
+  margin: 0 auto;
+  width: $master-width;
+  max-width: 90%;
+  text-align: left;
 
-    display: flex;
-    flex-direction: column;
-
+  display: flex;
+  flex-direction: column;
 }
 
 label {
-    display: block;
-    margin-bottom: 32px;
-    color: $btn-grey;
+  display: block;
+  margin-bottom: 32px;
+  color: $btn-grey;
 
-
-    font-size: 14px;
-    font-weight: 800;
-    text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 input {
-    color: $primary-color;
-    display: inline-block;
-    border: none;
-    padding: 16px 24px;
+  color: $primary-color;
+  display: inline-block;
+  border: none;
+  padding: 16px 24px;
 
-    font-size: 18px;
-    text-decoration: none;
+  font-size: 18px;
+  text-decoration: none;
 
-    width: 100%;
-    border-radius: $master-radius;
+  width: 90%;
+  border-radius: $master-radius;
 }
 
 input::placeholder {
-    color: $btn-grey;
-    // font-weight: 800;
+  color: $btn-grey;
+  // font-weight: 800;
 }
 
-input[type=text],
-input[type=number] {
-    background-color: $bg-color;
+input[type="text"],
+input[type="number"] {
+  background-color: $bg-color;
 }
 
 .submit-btn {
-    position: relative;
-    margin: 0 auto;
-    font-weight: 800;
-    text-transform: uppercase;
-    border-radius: $master-radius;
+  position: relative;
+  margin: 0 auto;
+  font-weight: 800;
+  text-transform: uppercase;
+  border-radius: $master-radius;
 
-    width: 100%;
+  width: 100%;
 }
