@@ -34,9 +34,7 @@ export default class App extends Component {
   componentDidMount() {
     // var that = this;
 
-    let url =
-      "https://cors-anywhere.herokuapp.com/" +
-      "http://farme-2020.herokuapp.com/listings";
+    let url = "/listings";
     fetch(url)
       .then(res => {
         return res.json();

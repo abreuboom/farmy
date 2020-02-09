@@ -2,7 +2,10 @@ import "../form.css";
 
 import React, { Component } from "react";
 
+import axios from "axios";
 import ImageUploader from "react-images-upload";
+import uuidv4 from "uuid/v4";
+import { imagesRef, uploadImg } from "../actions/storage";
 
 export default class UploadForm extends Component {
   constructor(props) {
@@ -11,8 +14,9 @@ export default class UploadForm extends Component {
       title: "",
       price: "",
       quantity: "",
-      unit: "lbs",
-      pictures: []
+      units: "lbs",
+      produce: "",
+      picture: null
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -20,7 +24,7 @@ export default class UploadForm extends Component {
 
   onDrop(picture) {
     this.setState({
-      pictures: this.state.pictures.concat(picture)
+      picture: picture[0]
     });
   }
 
@@ -34,8 +38,29 @@ export default class UploadForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
+    let { price, title, quantity, units, produce } = this.state;
     // do something here
+    let extension = this.state.picture.name.substr(
+      this.state.picture.name.length - 4
+    );
+    uploadImg(this.state.picture).then(snapshot => {
+      console.log(snapshot.metadata.fullPath);
+      let url = "api/listings";
+      axios
+        .post(url, {
+          price,
+          title,
+          quantity,
+          units,
+          produce,
+          lister: 27,
+          img_link: snapshot.metadata.fullPath
+        })
+        .catch(e => {
+          console.log(e);
+        });
+    });
+
     console.log(this.state);
   };
   render() {
@@ -51,6 +76,7 @@ export default class UploadForm extends Component {
                 value={this.state.title}
                 onChange={this.handleChange}
                 placeholder="Fresh Tomatoes"
+                required
               />
             </label>
             <label>
@@ -61,6 +87,7 @@ export default class UploadForm extends Component {
                 value={this.state.price}
                 onChange={this.handleChange}
                 placeholder="2"
+                required
               />
             </label>
             <label>
@@ -71,6 +98,7 @@ export default class UploadForm extends Component {
                 value={this.state.quantity}
                 onChange={this.handleChange}
                 placeholder="10"
+                required
               />
             </label>
             <label htmlFor="units">
@@ -85,7 +113,17 @@ export default class UploadForm extends Component {
                 <option value="count">count</option>
               </select>
             </label>
-
+            <label>
+              Produce <br />
+              <input
+                type="text"
+                name="produce"
+                value={this.state.produce}
+                onChange={this.handleChange}
+                placeholder="Tomatoes"
+                required
+              />
+            </label>
             <ImageUploader
               withIcon={true}
               buttonText="Choose images"
