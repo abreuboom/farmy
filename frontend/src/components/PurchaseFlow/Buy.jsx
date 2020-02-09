@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./css/pf.css"
 export default class Buy extends Component {
   render() {
     return (
-      <div className="container">
+      <div className="base-container">
         <div className="buy-container" style={{ }}>
           <img src={this.props.img_url}></img>
           <div className="buy-item">
@@ -19,8 +20,7 @@ export default class Buy extends Component {
               <p id="distance"><float>0.1</float> mi</p>
             </p>
             <p id="tags">Tags:
-              <span className="produce-category" id="veggies"> Veggies</span>
-              <span className="produce-category" id="tomato"> Tomato </span>
+              <span className="produce-category name"> Veggies</span>
             </p>
 
           </div>
@@ -32,6 +32,7 @@ export default class Buy extends Component {
           <hr></hr>
           <div className="buy-seller">
             <p id="title">Seller Info</p>
+            <FontAwesomeIcon id ="pp" icon={faUserCircle}/>
             <p>Jack</p>
           </div>
           <div className ="contact-seller">
