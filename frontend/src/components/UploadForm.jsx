@@ -1,10 +1,11 @@
 import "../form.css";
 
 import React, { Component } from "react";
-import { uploadImg } from "../actions/storage";
 
 import ImageUploader from "react-images-upload";
+import { Link } from "react-router-dom";
 import axios from "axios";
+import { uploadImg } from "../actions/storage";
 import { userStore } from "../stores/UserStore";
 
 export default class UploadForm extends Component {
@@ -36,6 +37,8 @@ export default class UploadForm extends Component {
         pictureURI: reader.result
       });
 
+      document.getElementById("img-uploader").display = "none";
+
       axios
         .post("api/predict", { dataURI: reader.result })
         .then(res => {
@@ -61,6 +64,8 @@ export default class UploadForm extends Component {
   };
 
   handleSubmit = e => {
+    document.getElementById("loading").style.display = "block";
+
     e.preventDefault();
     let { price, title, quantity, units, produce } = this.state;
     // do something here
@@ -82,6 +87,8 @@ export default class UploadForm extends Component {
         .then(res => {
           console.log(res);
           this.props.getData();
+          document.getElementById("loading").style.display = "none";
+          this.props.history.push("/");
         })
         .catch(e => {
           snapshot
@@ -112,8 +119,22 @@ export default class UploadForm extends Component {
 
     return (
       <div className="container">
-        <div className="upload-form">
+        <div id="loading">
+          <h1>adding to farmy...</h1>
+        </div>
+        <div className="upload-form" id="upload">
           <form onSubmit={this.handleSubmit}>
+            <div id="img-uploader">
+              <ImageUploader
+                withIcon={false}
+                buttonText="Upload a Picture"
+                onChange={this.onDrop}
+                imgExtension={[".jpg", ".png, .heic"]}
+                maxFileSize={5242880}
+                singleImage={true}
+              />
+            </div>
+            <img id="upload-preview" src={this.state.pictureURI} />
             <label>
               Listing Title <br />
               <input
@@ -181,27 +202,10 @@ export default class UploadForm extends Component {
                   ))}
               </datalist>
             </label>
-            <div></div>
-            <ImageUploader
-              withIcon={false}
-              buttonText="Upload a Picture"
-              onChange={this.onDrop}
-              imgExtension={[".jpg", ".png, .heic"]}
-              maxFileSize={5242880}
-              singleImage={true}
-            />
+
             <button action="submit" className="submit-btn">
               Submit
             </button>
-            <img
-              style={{
-                marginTop: 5,
-                width: "100%",
-                height: "auto",
-                borderRadius: 10
-              }}
-              src={this.state.pictureURI}
-            />
           </form>
         </div>
       </div>

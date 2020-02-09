@@ -1,8 +1,5 @@
-.base-container {
- background-color: white;
-}
 .buy-container {
-  margin-top:25px;
+  padding-top: 25px;
   background-color: white;
 }
 
@@ -18,6 +15,7 @@
 .buy-container img {
   flex: 1;
   width: 100%;
+  border-radius: 10px;
 }
 
 .buy-item {
@@ -28,13 +26,23 @@
 
 .buy-item #distance {
   text-align: right;
-  margin : 0;
+  margin: 0;
   display: inline;
   margin-left: 50px;
 }
 
-.buy-item #rating {
-  text-align: left;
+.buy-seller #rating {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0;
+  align-items: center;
+  text-align: center;
+}
+
+#rating p {
+  margin: 10px;
+  font-size: 15px;
 }
 
 .buy-item #location {
@@ -52,7 +60,7 @@
 
 .buy-item h2 {
   text-align: left;
-  margin : 0;
+  margin: 0;
 }
 
 .buy-detail {
@@ -64,11 +72,11 @@
   margin-right: auto;
 }
 
-.buy-detail #availablility{
+.buy-detail #availablility {
   color: #80db55;
 }
 
-.buy-detail #price{
+.buy-detail #price {
   font-size: 150%;
 }
 
@@ -84,6 +92,11 @@
   text-align: left;
 }
 
+.buy-seller p {
+  margin-bottom: 0;
+  font-size: 120%;
+}
+
 .produce-category.name {
   display: inline;
   margin-left: 10px;
@@ -94,7 +107,6 @@
 
 .contact-seller {
   padding: 16px;
-  width: 90%;
   bottom: 0;
   position: fixed;
   left: 0;
@@ -102,9 +114,10 @@
   margin-left: auto;
   margin-right: auto;
   background-color: white;
+  box-shadow: -4px -1px 18px 6px rgba(194, 194, 194, 1);
 }
 
-.contact-seller #contactBox {
+#contactBox {
   margin-left: 10px;
   margin-right: 10px;
   font-size: 14px;
@@ -115,8 +128,21 @@
   white-space: nowrap;
   font-weight: 800;
   text-transform: uppercase;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 1px 5px rgba(0, 0, 0, 0.24);
 }
+
+.contact-seller:hover #contactBox {
+  cursor: pointer;
+  background-color: #66b147;
+}
+
 
 #pp {
   font-size: 104px;
+}
+
+#star {
+  display: inline;
+  align-items: left;
+  color: #FFD700;
 }

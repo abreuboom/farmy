@@ -3,11 +3,11 @@ import "./App.css";
 import React, { Component, useState } from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
-import Buy from "./components/PurchaseFlow/Buy";
+import Buy from "./components/Buy";
 import ListingList from "./components/ListingList";
-// import ListingPage from "./components/ListingPage";
 import NavigationBar from "./components/NavigationBar";
 import ProduceFilter from "./components/ProduceFilter";
+import { ScrollToTop } from "./ScrollToTop";
 import UploadForm from "./components/UploadForm";
 import axios from "axios";
 import { userStore } from "./stores/UserStore";
@@ -39,7 +39,6 @@ export default class App extends Component {
     const urls = ["/api/listings", "/api/produce"];
     Promise.all(urls.map(url => fetch(url).then(res => res.json()))).then(
       data => {
-        console.log(data);
         this.getAllUsers()
           .then(allUsers => {
             this.setState({
@@ -54,33 +53,6 @@ export default class App extends Component {
       }
     );
   };
-
-  // componentDidUpdate() {
-  //   this.setState({ currentListing: this.getCurrentListing });
-  // }
-
-  // getListings() {
-  //   switch (this.state.produceFilter) {
-  //     case "none":
-  //       return this.state.listings;
-  //     case "tomatoes":
-  //       return this.state.listings.filter(d => d.produce_type === "tomato");
-  //     default:
-  //       return this.state.listings;
-  //   }
-  // }
-
-  // getCategories() {
-  //   let d = this.state.listings;
-  //   var categories = {};
-
-  //   d.forEach(listing => {
-  //     categories[listing.produce[0].name] += 1;
-  //   });
-
-  //   console.log(categories);
-  //   return categories;
-  // }
 
   getCurrentListing() {
     let url = new URL(window.location);
@@ -115,10 +87,14 @@ export default class App extends Component {
       <div className="App">
         <Router>
           <NavigationBar />
+          <ScrollToTop />
           <Switch>
-            <Route path="/sell">
-              <UploadForm getData={this.getData} />
-            </Route>
+            <Route
+              path="/sell"
+              render={route => {
+                return <UploadForm getData={this.getData} {...route} />;
+              }}
+            ></Route>
             <Route
               path="/buy/:id"
               render={route => {
@@ -137,9 +113,6 @@ export default class App extends Component {
                 );
               }}
             ></Route>
-            {/* <Route path="/listing/">
-              <ListingPage {...this.getCurrentListing()} />
-            </Route> */}
             <Route
               exact
               path="/"

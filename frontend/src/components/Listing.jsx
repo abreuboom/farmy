@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
-import { getImg } from "../actions/storage";
+import { populateImg } from "../actions/storage";
 
 export default class Listing extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ export default class Listing extends Component {
     let id = (this.props.produce.name + this.props.offer_id)
       .replace(/\s+/g, "")
       .toLowerCase();
-    getImg(this.props.img_link, id);
+    populateImg(this.props.img_link, id);
     return (
       <div className="listing" id={id}>
         <div className="listing-gradient"></div>
@@ -41,7 +41,7 @@ export default class Listing extends Component {
         </div>
         <div className="listing-content">
           <div className="listing-details">
-            <h2>{this.props.produce.name}</h2> <br />
+            <h2>{this.props.title}</h2> <br />
             <p>
               ${this.props.price} per {this.props.units}
             </p>

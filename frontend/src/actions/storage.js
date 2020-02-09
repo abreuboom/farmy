@@ -29,6 +29,13 @@ export const uploadImg = file => {
 };
 export const getImg = (ref, loc) => {
   return getRef(ref).getDownloadURL().then(function (url) {
+    document.getElementById(loc).src = url;
+    console.log(url);
+    return url;
+  });
+}
+export const populateImg = (ref, loc) => {
+  return getRef(ref).getDownloadURL().then(function (url) {
     document.getElementById(loc).style.backgroundImage = "url(" + url + ")";
     console.log(url);
     return url;
