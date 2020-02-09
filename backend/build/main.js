@@ -169,15 +169,25 @@ app.post("/api/listings", function (_a, res) {
     });
 });
 app.get("/api/users", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, _b;
-    return __generator(this, function (_c) {
-        switch (_c.label) {
+    var _a, _b, _c, _d;
+    return __generator(this, function (_e) {
+        switch (_e.label) {
             case 0:
+                if (!req.query.username) return [3 /*break*/, 2];
                 _b = (_a = res).send;
-                return [4 /*yield*/, db("User").select("*")];
+                return [4 /*yield*/, db("User")
+                        .select("*")
+                        .where({ username: req.query.username })];
             case 1:
-                _b.apply(_a, [_c.sent()]);
-                return [2 /*return*/];
+                _b.apply(_a, [(_e.sent())[0]]);
+                return [3 /*break*/, 4];
+            case 2:
+                _d = (_c = res).send;
+                return [4 /*yield*/, db("User").select("*")];
+            case 3:
+                _d.apply(_c, [_e.sent()]);
+                _e.label = 4;
+            case 4: return [2 /*return*/];
         }
     });
 }); });

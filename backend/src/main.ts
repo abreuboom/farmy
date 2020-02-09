@@ -75,7 +75,17 @@ app.post("/api/listings", async ({ body }, res) => {
 });
 
 app.get("/api/users", async (req, res) => {
-  res.send(await db("User").select("*"));
+  if (req.query.username) {
+    res.send(
+      (
+        await db("User")
+          .select("*")
+          .where({ username: req.query.username })
+      )[0]
+    );
+  } else {
+    res.send(await db("User").select("*"));
+  }
 });
 
 app.post("/api/users", async ({ body }, res) => {
