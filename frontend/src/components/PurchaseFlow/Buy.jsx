@@ -53,7 +53,7 @@ export default class Buy extends Component {
               <p>Jack</p>
             </div>
             <div className="contact-seller">
-              <span id="contactBox">Contact Seller</span>
+              <a href="sms:+123456789"><span id="contactBox">Contact Seller</span></a>
             </div>
           </div>
         </div>
