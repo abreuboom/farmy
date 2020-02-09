@@ -6,6 +6,7 @@ import axios from "axios";
 import ImageUploader from "react-images-upload";
 import uuidv4 from "uuid/v4";
 import { imagesRef, uploadImg } from "../actions/storage";
+import { userStore } from "../stores/UserStore";
 
 export default class UploadForm extends Component {
   constructor(props) {
@@ -46,29 +47,30 @@ export default class UploadForm extends Component {
     );
     uploadImg(this.state.picture).then(snapshot => {
       console.log(snapshot.metadata.fullPath);
-      let url = "api/listings";
-      axios.get("/api/users", { params: { username: "test1" } }).then(data => {
-        let lister = data.data.id;
-        axios
-          .post(url, {
-            price,
-            title,
-            quantity,
-            units,
-            produce: this.state.produceList.find(elem => elem.name === produce)
-              ? this.state.produceList.find(elem => elem.name === produce)
-                  .produce_id
-              : produce,
-            lister,
-            img_link: snapshot.metadata.fullPath
-          })
-          .then(res => {
-            console.log(res);
-          })
-          .catch(e => {
-            console.log(e.response);
-          });
-      });
+      axios
+        .post("api/listings", {
+          price,
+          title,
+          quantity,
+          units,
+          produce: this.state.produceList.find(elem => elem.name === produce)
+            ? this.state.produceList.find(elem => elem.name === produce)
+                .produce_id
+            : produce,
+          lister: userStore.user.id,
+          img_link: snapshot.metadata.fullPath
+        })
+        .then(res => {
+          console.log(res);
+        })
+        .catch(e => {
+          snapshot
+            .ref()
+            .delete()
+            .then(() => {
+              console.log(e.response);
+            });
+        });
     });
 
     console.log(this.state);

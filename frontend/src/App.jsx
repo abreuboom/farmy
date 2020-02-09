@@ -1,6 +1,6 @@
 import "./App.css";
 
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import Buy from "./components/PurchaseFlow/Buy";
@@ -9,6 +9,8 @@ import ListingList from "./components/ListingList";
 import NavigationBar from "./components/NavigationBar";
 import ProduceFilter from "./components/ProduceFilter";
 import UploadForm from "./components/UploadForm";
+import Axios from "axios";
+import { userStore } from "./stores/UserStore";
 
 export default class App extends Component {
   constructor(props) {
@@ -123,9 +125,31 @@ export default class App extends Component {
                 );
               }}
             ></Route>
+            <Route path="/login" component={UserSelector} />>
           </Switch>
         </Router>
       </div>
     );
   }
 }
+
+const UserSelector = () => {
+  let [state, setState] = useState([]);
+
+  Axios.get("/api/users").then(data => {
+    setState(data.data);
+  });
+
+  return (
+    <div>
+      {state.map(elem => (
+        <button
+          onClick={() => userStore.getUser(elem.username)}
+          key={elem.username}
+        >
+          {elem.username}
+        </button>
+      ))}
+    </div>
+  );
+};
