@@ -4,16 +4,13 @@ import React, { Component } from "react";
 
 export default class Buy extends Component {
   render() {
-    let url = new URL(window.location);
-    let params = new URLSearchParams(url.search);
-    let id = params.get("id");
+    let { listing } = this.props;
+    console.log(this.props);
 
-    let { listings } = this.props;
-
-    let listing = listings.find(x => x.offer_id === parseInt(id));
+    console.log(listing);
 
     if (listing) {
-      console.log(listing);
+      console.log("yeet: " + listing.offer_id);
 
       return (
         <div className="container">
@@ -24,9 +21,9 @@ export default class Buy extends Component {
               <p id="rating">4.9 stars</p>
               <p id="location">
                 Boston, MA
-                <p id="distance">
+                <span id="distance">
                   <float>0.1</float> mi
-                </p>
+                </span>
               </p>
               <p id="tags">
                 Tags:

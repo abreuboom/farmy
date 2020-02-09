@@ -27,7 +27,7 @@ export default class Listing extends Component {
           <button className="listing-button">
             <Link
               to={{
-                pathname: `buy?id=${this.props.offer_id}`,
+                pathname: `buy/${this.props.offer_id}`,
                 query: "/buy/"
               }}
             >

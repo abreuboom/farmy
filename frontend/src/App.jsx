@@ -17,7 +17,7 @@ export default class App extends Component {
     this.state = {
       listings: [],
       produceFilter: "none",
-      currentListing: {}
+      currentListing: 0
     };
   }
 
@@ -36,6 +36,10 @@ export default class App extends Component {
         console.error(error);
       });
   }
+
+  // componentDidUpdate() {
+  //   this.setState({ currentListing: this.getCurrentListing });
+  // }
 
   // getListings() {
   //   switch (this.state.produceFilter) {
@@ -60,6 +64,17 @@ export default class App extends Component {
   //   return categories;
   // }
 
+  getCurrentListing() {
+    let url = new URL(window.location);
+    let params = new URLSearchParams(url.search);
+    let id = params.get("id");
+
+    console.log(id);
+
+    return parseInt(id);
+    // let currentListing = listings.find(x => x.offer_id === parseInt(id));
+  }
+
   setFilter(filter) {
     this.setState({ produceFilter: filter });
   }
@@ -74,9 +89,17 @@ export default class App extends Component {
               <UploadForm />
             </Route>
             <Route
-              path="/buy"
-              render={() => {
-                return <Buy listings={this.state.listings} />;
+              path="/buy/:id"
+              render={route => {
+                let i = route.match.params.id;
+                return (
+                  <Buy
+                    {...route}
+                    listing={this.state.listings.find(
+                      x => x.offer_id === parseInt(i)
+                    )}
+                  />
+                );
               }}
             ></Route>
             {/* <Route path="/listing/">
