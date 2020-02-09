@@ -20,13 +20,13 @@ export default class Listing extends Component {
         <div className="listing-content">
           <div className="listing-details">
             <h2>{this.props.title}</h2> <br />
-            <p>{this.props.price}</p>
+            <p>{this.props.price} per {this.props.units}</p>
           </div>
           <button className="listing-button">
             <Link
               to={{
-                pathname: `listing?id=${this.props.id}`,
-                query: "/listing/"
+                pathname: `buy?id=${this.props.id}`,
+                query: "/buy/"
               }}
             >
               <FontAwesomeIcon icon={faEye} />

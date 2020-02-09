@@ -25,7 +25,7 @@ const App = () => {
             <UploadForm />
           </Route>
           <Route path="/buy">
-            <Buy />
+            <Buy {...getListingById(listingId)}/>
           </Route>
           <Route path="/listing/">
             <ListingPage {...getListingById(listingId)} />

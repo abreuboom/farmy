@@ -3,7 +3,9 @@
       "id": "0",
       "title": "fresh tomatoes for sale",
       "date_posted": "12-12-2012",
-      "price": "$2 per lb",
+      "price": "$2",
+      "units": "pound",
+      "quantity": 2,
       "produce_type": "tomato",
       "img_url": "https://www.6amgroup.com/wp-content/uploads/2015/07/shaq-feat.jpg"
     },
@@ -11,7 +13,9 @@
       "id": "1",
       "title": "Carrots!",
       "date_posted": "6-2-2019",
-      "price": "$1.49 per lb",
+      "price": "$1.49",
+      "quantity": 3,
+      "units": "jar",
       "produce_type": "carrot",
       "img_url": "https://thecountrybasket.com/wp-content/uploads/2015/04/Perfectly-home-grown-carrots-lots-of-helpful-tips-and-pictures.jpg"
     },
@@ -19,7 +23,9 @@
       "id": "2",
       "title": "Potatoes (perfect for tater tots)",
       "date_posted": "6-5-2019",
-      "price": "$2 per lb",
+      "price": "$2",
+      "units": "piece",
+      "quantity": 2,
       "produce_type": "potato",
       "img_url": "https://www.newlifeonahomestead.com/wp-content/uploads/2012/08/harvesting-potatoes-002-Medium.jpg"
     }
