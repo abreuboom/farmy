@@ -3,7 +3,7 @@ import "./App.css";
 import React, { Component, useState } from "react";
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
-import Buy from "./components/PurchaseFlow/Buy";
+import Buy from "./components/Buy";
 import ListingList from "./components/ListingList";
 // import ListingPage from "./components/ListingPage";
 import NavigationBar from "./components/NavigationBar";

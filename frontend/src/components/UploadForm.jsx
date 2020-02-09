@@ -134,7 +134,7 @@ export default class UploadForm extends Component {
                 singleImage={true}
               />
             </div>
-            <img id="upload-preview" style={{}} src={this.state.pictureURI} />
+            <img id="upload-preview" src={this.state.pictureURI} />
             <label>
               Listing Title <br />
               <input
