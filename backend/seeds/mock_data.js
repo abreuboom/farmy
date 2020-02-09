@@ -122,7 +122,8 @@ async function seed(knex) {
       img_link: "#",
       price: 1,
       lister: user1,
-      produce: prod1
+      produce: prod1,
+      title: "test title 1"
     },
     {
       quantity: 1,
@@ -130,7 +131,8 @@ async function seed(knex) {
       img_link: "#",
       price: 1,
       lister: user1,
-      produce: prod2
+      produce: prod2,
+      title: "test title 2"
     },
     {
       quantity: 10,
@@ -138,7 +140,8 @@ async function seed(knex) {
       img_link: "#",
       price: 12,
       lister: user2,
-      produce: prod2
+      produce: prod2,
+      title: "Test title 3"
     }
   ]);
 
