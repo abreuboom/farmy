@@ -10,11 +10,11 @@ export default class Listing extends Component {
     var d = new Date(this.props.created_at);
 
     var time_diff = Date.now() - d.getTime();
-    var day_diff = time_diff / (1000 * 3600 * 24);
+    var day_diff = time_diff / (1000 * 3600);
     console.log(day_diff);
 
     if (day_diff >= 3) {
-      return day_diff + " days old";
+      return Math.floor(day_diff) + " hours ago";
     } else {
       return "Just Posted";
     }

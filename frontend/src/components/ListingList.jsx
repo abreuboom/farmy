@@ -13,22 +13,20 @@ export default class ListingList extends Component {
       <div className="container">
         <div className="listings-container">
           <p className="listings-title">Produce near you</p>
-          <div className="listing-list">
-            {listings
-              .filter(listing => {
-                if (
-                  produceFilter !== "All" &&
-                  listing.produce[0].name !== produceFilter
-                ) {
-                  return false;
-                } else {
-                  return true;
-                }
-              })
-              .map(function(listing, i) {
-                return <Listing {...listing} key={i} />;
-              })}
-          </div>
+          {listings
+            .filter(listing => {
+              if (
+                produceFilter !== "All" &&
+                listing.produce[0].name !== produceFilter
+              ) {
+                return false;
+              } else {
+                return true;
+              }
+            })
+            .map(function(listing, i) {
+              return <Listing {...listing} key={i} />;
+            })}
         </div>
       </div>
     );

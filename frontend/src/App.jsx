@@ -138,6 +138,8 @@ export default class App extends Component {
             <Route path="/login" component={UserSelector} />>
           </Switch>
         </Router>
+
+        <div className="footer">Made with 🌱 at HackBeanpot 2020</div>
       </div>
     );
   }

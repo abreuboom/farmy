@@ -40,6 +40,15 @@
   color: white;
 }
 
+.footer {
+  font-size: 12px;
+  font-weight: 800;
+  color: #c2c2c2;
+  background-color: white;
+  padding-top: 50px;
+  padding-bottom: 10px;
+}
+
 button {
   display: inline-block;
   border: none;
