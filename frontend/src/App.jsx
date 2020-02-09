@@ -5,9 +5,9 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import Buy from "./components/Buy";
 import ListingList from "./components/ListingList";
-// import ListingPage from "./components/ListingPage";
 import NavigationBar from "./components/NavigationBar";
 import ProduceFilter from "./components/ProduceFilter";
+import { ScrollToTop } from "./ScrollToTop";
 import UploadForm from "./components/UploadForm";
 import axios from "axios";
 import { userStore } from "./stores/UserStore";
@@ -90,6 +90,7 @@ export default class App extends Component {
       <div className="App">
         <Router>
           <NavigationBar />
+          <ScrollToTop />
           <Switch>
             <Route
               path="/sell"

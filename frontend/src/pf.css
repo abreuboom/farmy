@@ -31,8 +31,18 @@
   margin-left: 50px;
 }
 
-.buy-item #rating {
-  text-align: left;
+.buy-seller #rating {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0;
+  align-items: center;
+  text-align: center;
+}
+
+#rating p {
+  margin: 10px;
+  font-size: 15px;
 }
 
 .buy-item #location {
@@ -82,6 +92,11 @@
   text-align: left;
 }
 
+.buy-seller p {
+  margin-bottom: 0;
+  font-size: 120%;
+}
+
 .produce-category.name {
   display: inline;
   margin-left: 10px;
@@ -92,13 +107,14 @@
 
 .contact-seller {
   padding: 16px;
-  width: 90%;
-  bottom: 24px;
+  bottom: 0;
   position: fixed;
   left: 0;
   right: 0;
   margin-left: auto;
   margin-right: auto;
+  background-color: white;
+  box-shadow: -4px -1px 18px 6px rgba(194, 194, 194, 1);
 }
 
 #contactBox {
@@ -123,4 +139,10 @@
 
 #pp {
   font-size: 104px;
+}
+
+#star {
+  display: inline;
+  align-items: left;
+  color: #FFD700;
 }
