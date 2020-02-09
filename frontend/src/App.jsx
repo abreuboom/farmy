@@ -23,7 +23,7 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    var that = this;
+    // var that = this;
 
     let url =
       "https://cors-anywhere.herokuapp.com/" +
@@ -33,8 +33,8 @@ export default class App extends Component {
         return res.json();
       })
       .then(data => {
-        // console.log(data);
-        that.setState({ listings: data });
+        console.log(data);
+        this.setState({ listings: data });
       })
       .catch(error => {
         console.error(error);
@@ -51,16 +51,16 @@ export default class App extends Component {
     return l;
   }
 
-  getListings() {
-    switch (this.state.produceFilter) {
-      case "none":
-        return this.state.listings;
-      case "tomatoes":
-        return this.state.listings.filter(d => d.produce_type === "tomato");
-      default:
-        return this.state.listings;
-    }
-  }
+  // getListings() {
+  //   switch (this.state.produceFilter) {
+  //     case "none":
+  //       return this.state.listings;
+  //     case "tomatoes":
+  //       return this.state.listings.filter(d => d.produce_type === "tomato");
+  //     default:
+  //       return this.state.listings;
+  //   }
+  // }
 
   getCategories() {
     let d = this.state.listings;
@@ -71,7 +71,6 @@ export default class App extends Component {
     });
 
     console.log(categories);
-
     return categories;
   }
 
@@ -94,13 +93,20 @@ export default class App extends Component {
             <Route path="/listing/">
               <ListingPage {...this.getCurrentListing()} />
             </Route>
-            <Route path="/browse">
-              <ProduceFilter
-                categories={this.getCategories()}
-                setFilter={this.setFilter}
-              />
-              <ListingList listings={this.getListings()} />
-            </Route>
+            <Route
+              path="/browse"
+              render={() => {
+                console.log(this.state.listings);
+
+                return (
+                  <>
+                    <ProduceFilter categories={[]} setFilter={this.setFilter} />
+
+                    <ListingList listings={this.state.listings} />
+                  </>
+                );
+              }}
+            ></Route>
           </Switch>
         </Router>
       </div>

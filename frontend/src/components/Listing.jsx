@@ -6,8 +6,6 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 export default class Listing extends Component {
   render() {
-    console.log(this.props);
-
     return (
       <div
         className="listing"
