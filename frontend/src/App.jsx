@@ -26,7 +26,7 @@ const App = () => {
           <Route path="/listing/">
             <ListingPage {...getListingById(listingId)} />
           </Route>
-          <Route path="/home">
+          <Route path="/browse">
             <ProduceFilter produceCategories={data.produce_categories} />
             <ListingList listings={data.listings} />
           </Route>

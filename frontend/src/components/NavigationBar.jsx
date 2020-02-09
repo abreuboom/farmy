@@ -18,7 +18,7 @@ export default class NavigationBar extends Component {
             <FontAwesomeIcon icon={faSeedling} />
           </NavLink>
           <h1>farmy</h1>
-          <NavLink activeClassName="active" to="/">
+          <NavLink activeClassName="active" to="/browse">
             <FontAwesomeIcon icon={faShoppingBasket} />
           </NavLink>
         </div>
