@@ -6,6 +6,10 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { getImg } from "../actions/storage";
 
 export default class Listing extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   createExpirationText() {
     var d = new Date(this.props.created_at);
 

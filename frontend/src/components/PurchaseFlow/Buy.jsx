@@ -3,8 +3,26 @@ import "./css/pf.css";
 import React, { Component } from "react";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./css/pf.css"
-export default class Buy extends Component {
+import "./css/pf.css";
+import { observer } from "mobx-react";
+
+import { locationStore } from "../../stores/LocationStore";
+class Buy extends Component {
+  constructor(props) {
+    super(props);
+  }
+  componentDidMount() {
+    console.log(this.props);
+    setTimeout(() => {
+      locationStore
+        .calculateDistanceFromOther(this.props.lister.username)
+        .then(dist => {
+          this.setState({
+            distance: dist
+          });
+        });
+    }, 200);
+  }
 
   render() {
     let { listing } = this.props;
@@ -30,14 +48,8 @@ export default class Buy extends Component {
               </p>
               <p id="tags">
                 Tags:
-                <span className="produce-category.name">
-                  {" "}
-                  Veggies
-                </span>
-                <span className="produce-category.name">
-                  {" "}
-                  Tomato{" "}
-                </span>
+                <span className="produce-category.name"> Veggies</span>
+                <span className="produce-category.name"> Tomato </span>
               </p>
             </div>
             <hr></hr>
@@ -50,11 +62,27 @@ export default class Buy extends Component {
             <hr></hr>
             <div className="buy-seller">
               <p id="title">Seller Info</p>
-              <FontAwesomeIcon id ="pp" icon={faUserCircle}/>
-              <p>{this.props.lister.first_name+" "+this.props.lister.last_name}</p>
+              <FontAwesomeIcon id="pp" icon={faUserCircle} />
+              <p>
+                {this.props.lister.first_name +
+                  " " +
+                  this.props.lister.last_name}
+              </p>
+              <br />
+              {locationStore.calculatedDistance > 0 && (
+                <p>{locationStore.calculatedDistance.toFixed(2)} miles away</p>
+              )}
             </div>
             <div className="contact-seller">
-              <a href={this.props.lister.phone_num? `sms:+1${this.props.lister.phone_num}`:"#"}><span id="contactBox">Contact Seller</span></a>
+              <a
+                href={
+                  this.props.lister.phone_num
+                    ? `sms:+1${this.props.lister.phone_num}`
+                    : "#"
+                }
+              >
+                <span id="contactBox">Contact Seller</span>
+              </a>
             </div>
           </div>
         </div>
@@ -64,3 +92,5 @@ export default class Buy extends Component {
     }
   }
 }
+
+export default observer(Buy);

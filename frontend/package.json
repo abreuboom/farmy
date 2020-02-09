@@ -14,7 +14,9 @@
     "@types/react": "^16.9.19",
     "@types/react-dom": "^16.9.5",
     "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
     "firebase": "^7.8.1",
+    "mapbox-gl": "^1.7.0",
     "mobx": "^5.15.4",
     "mobx-react": "^6.1.7",
     "react": "^16.12.0",
@@ -33,7 +35,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://farme-2020.herokuapp.com",
+  "proxy": "http://localhost:8000",
   "eslintConfig": {
     "extends": "react-app"
   },

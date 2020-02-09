@@ -11,10 +11,13 @@ import ProduceFilter from "./components/ProduceFilter";
 import UploadForm from "./components/UploadForm";
 import axios from "axios";
 import { userStore } from "./stores/UserStore";
+import { locationStore } from "./stores/LocationStore";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
+    locationStore.getLocation();
+
     this.setFilter = this.setFilter.bind(this);
     this.state = {
       listings: [],
@@ -125,15 +128,14 @@ export default class App extends Component {
                 let matchedListing = this.state.listings.find(
                   x => x.offer_id === parseInt(i)
                 );
+                let lister = this.state.users.find(x => {
+                  return x.username === matchedListing.lister.username;
+                });
+
                 console.log(this.state);
+
                 return (
-                  <Buy
-                    {...route}
-                    lister={this.state.users.find(
-                      x => x.username === matchedListing.lister[0].username
-                    )}
-                    listing={matchedListing}
-                  />
+                  <Buy {...route} lister={lister} listing={matchedListing} />
                 );
               }}
             ></Route>
