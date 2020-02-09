@@ -42,7 +42,6 @@ export default class App extends Component {
     ];
     Promise.all(urls.map(url => fetch(pre + url).then(res => res.json()))).then(
       data => {
-        console.log(data);
         this.getAllUsers()
           .then(allUsers => {
             this.setState({
@@ -57,33 +56,6 @@ export default class App extends Component {
       }
     );
   };
-
-  // componentDidUpdate() {
-  //   this.setState({ currentListing: this.getCurrentListing });
-  // }
-
-  // getListings() {
-  //   switch (this.state.produceFilter) {
-  //     case "none":
-  //       return this.state.listings;
-  //     case "tomatoes":
-  //       return this.state.listings.filter(d => d.produce_type === "tomato");
-  //     default:
-  //       return this.state.listings;
-  //   }
-  // }
-
-  // getCategories() {
-  //   let d = this.state.listings;
-  //   var categories = {};
-
-  //   d.forEach(listing => {
-  //     categories[listing.produce[0].name] += 1;
-  //   });
-
-  //   console.log(categories);
-  //   return categories;
-  // }
 
   getCurrentListing() {
     let url = new URL(window.location);
@@ -119,9 +91,12 @@ export default class App extends Component {
         <Router>
           <NavigationBar />
           <Switch>
-            <Route path="/sell">
-              <UploadForm getData={this.getData} />
-            </Route>
+            <Route
+              path="/sell"
+              render={route => {
+                return <UploadForm getData={this.getData} {...route} />;
+              }}
+            ></Route>
             <Route
               path="/buy/:id"
               render={route => {
@@ -129,7 +104,6 @@ export default class App extends Component {
                 let matchedListing = this.state.listings.find(
                   x => x.offer_id === parseInt(i)
                 );
-                console.log(this.state);
                 return (
                   <Buy
                     {...route}
@@ -141,9 +115,6 @@ export default class App extends Component {
                 );
               }}
             ></Route>
-            {/* <Route path="/listing/">
-              <ListingPage {...this.getCurrentListing()} />
-            </Route> */}
             <Route
               exact
               path="/"
