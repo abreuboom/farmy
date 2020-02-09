@@ -21,10 +21,6 @@ export default class Buy extends Component {
             <img src={listing.img_url} alt=""></img>
             <div className="buy-item">
               <div id="title">{listing.title}</div>
-              <div id="rating">
-              <FontAwesomeIcon id="star" icon={faStar}/>
-              <p>4.9</p>
-              </div>
               <p id="location">
                 Boston, MA
                 <span id="distance">
@@ -55,7 +51,12 @@ export default class Buy extends Component {
               <p id="title">Seller Info</p>
               <FontAwesomeIcon id ="pp" icon={faUserCircle}/>
               <p>{this.props.lister.first_name+" "+this.props.lister.last_name}</p>
+                <div id="rating">
+                  <FontAwesomeIcon id="star" icon={faStar}/>
+                  <p>4.9</p>
+                </div>
             </div>
+
             <div className="contact-seller">
               <a href={this.props.lister.phone_num? `sms:+1${this.props.lister.phone_num}`:"#"}><span id="contactBox">Contact Seller</span></a>
             </div>

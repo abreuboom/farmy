@@ -33,13 +33,13 @@
   margin-left: 50px;
 }
 
-.buy-item #rating {
+.buy-seller #rating {
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: baseline;
-  text-align: left;
-
+  justify-content: center;
+  margin: 0;
+  align-items: center;
+  text-align: center;
 }
 
 #rating p {
@@ -91,6 +91,11 @@
 
 .buy-seller #title {
   text-align: left;
+}
+
+.buy-seller p {
+  margin-bottom: 0;
+  font-size: 120%;
 }
 
 .produce-category.name {
