@@ -1,5 +1,7 @@
-import * as firebase from "firebase/app";
 import "firebase/storage";
+
+import * as firebase from "firebase/app";
+
 import uuidv4 from "uuid/v4";
 
 var firebaseConfig = {
@@ -25,6 +27,10 @@ export const uploadImg = file => {
   let new_img_ref = imagesRef.child(uuidv4() + extension);
   return new_img_ref.put(file);
 };
-export const getImg = ref => {
-  return getRef(ref).getDownloadURL();
+export const getImg = (ref, loc) => {
+  return getRef(ref).getDownloadURL().then(function (url) {
+    document.getElementById(loc).style.backgroundImage = "url(" + url + ")";
+    console.log(url);
+    return url;
+  });
 };

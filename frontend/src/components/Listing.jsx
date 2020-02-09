@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { getImg } from "../actions/storage";
 
 export default class Listing extends Component {
   createExpirationText() {
@@ -20,11 +21,12 @@ export default class Listing extends Component {
   }
 
   render() {
+    let id = (this.props.produce[0].name + this.props.offer_id)
+      .replace(/\s+/g, "")
+      .toLowerCase();
+    getImg(this.props.img_link, id);
     return (
-      <div
-        className="listing"
-        style={{ backgroundImage: "url(" + this.props.img_link + ")" }}
-      >
+      <div className="listing" id={id}>
         <div className="listing-gradient"></div>
         <div className="listing-header">
           <div className="listing-age caps">
