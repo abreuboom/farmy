@@ -2,7 +2,7 @@
 
 module.exports = {
   development: {
-    client: "pg",
+    client: "postgresql",
     connection: {
       user: "root",
       password: "mysecretpassword",
@@ -10,7 +10,8 @@ module.exports = {
       host: "192.168.99.100",
       port: 5432,
       database: "root"
-    }
+    },
+    useNullAsDefault: true
   },
 
   staging: {
