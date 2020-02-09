@@ -17,11 +17,37 @@
 
 .buy-container img {
   flex: 1;
+  width: 100%;
 }
 
-.buy-item p {
-  text-align: left;
+.buy-item {
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.buy-item #distance {
+  text-align: right;
   margin : 0;
+  display: inline;
+  margin-left: 50px;
+}
+
+.buy-item #rating {
+  text-align: left;
+}
+
+.buy-item #location {
+  text-align: left;
+}
+
+.buy-item #tags {
+  text-align: left;
+}
+
+.buy-item #title {
+  font-size: 200%;
+  text-align: left;
 }
 
 .buy-item h2 {
@@ -30,9 +56,76 @@
 }
 
 .buy-detail {
-
+  text-align: left;
+  max-width: 90%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
+.buy-detail #availablility{
+  color: #80db55;
+}
+
+.buy-detail #price{
+  font-size: 150%;
+}
+
+
 .buy-seller {
-  
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 500px;
+}
+
+.buy-seller #title {
+  text-align: left;
+}
+
+.produce-category {
+  display: inline;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 14px;
+  color: #FFFFFF;
+  border-radius: 50px;
+  padding: 8px 16px;
+  white-space: nowrap;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+#veggies {
+  background-color: #80db55;
+}
+
+#tomato {
+  background-color: #ff6347;
+}
+
+.contact-seller {
+  padding: 16px;
+  width: 90%;
+  bottom: 0;
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+}
+
+.contact-seller #contactBox {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 14px;
+  color: #000000;
+  border-radius: 10px;
+  background-color: #80db55;
+  padding: 10px 100px;
+  white-space: nowrap;
+  font-weight: 800;
+  text-transform: uppercase;
 }
