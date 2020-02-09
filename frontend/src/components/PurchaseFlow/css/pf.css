@@ -34,9 +34,18 @@
 }
 
 .buy-item #rating {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: baseline;
   text-align: left;
+
 }
 
+#rating p {
+  margin: 10px;
+  font-size: 15px;
+}
 .buy-item #location {
   text-align: left;
 }
@@ -119,4 +128,10 @@
 
 #pp {
   font-size: 104px;
+}
+
+#star {
+  display: inline;
+  align-items: left;
+  color: #FFD700;
 }

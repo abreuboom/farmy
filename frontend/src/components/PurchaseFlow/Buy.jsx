@@ -1,7 +1,7 @@
 import "./css/pf.css";
 
 import React, { Component } from "react";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faUserCircle, faStar} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./css/pf.css"
 export default class Buy extends Component {
@@ -21,7 +21,10 @@ export default class Buy extends Component {
             <img src={listing.img_url} alt=""></img>
             <div className="buy-item">
               <div id="title">{listing.title}</div>
-              <p id="rating">4.9 stars</p>
+              <div id="rating">
+              <FontAwesomeIcon id="star" icon={faStar}/>
+              <p>4.9</p>
+              </div>
               <p id="location">
                 Boston, MA
                 <span id="distance">
