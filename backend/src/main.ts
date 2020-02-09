@@ -21,12 +21,16 @@ app.get("/api/listings", async (req, res) => {
   res.send(
     await Promise.all(
       data.map(async elem => {
-        let produce = await db("Produce")
-          .select(["name", "category"])
-          .where({ produce_id: elem.produce });
-        let lister = await db("User")
-          .select(["username"])
-          .where({ id: elem.lister });
+        let produce = (
+          await db("Produce")
+            .select(["name", "category"])
+            .where({ produce_id: elem.produce })
+        )[0];
+        let lister = (
+          await db("User")
+            .select(["username"])
+            .where({ id: elem.lister })
+        )[0];
         elem.produce = produce;
         elem.lister = lister;
         return elem;
