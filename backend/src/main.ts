@@ -41,14 +41,23 @@ app.post("/api/listings", async ({ body }, res) => {
   try {
     let newProdID;
     if (typeof body.produce === "string") {
-      body.produce = (
-        await db("Produce").insert(
-          {
-            name: body.produce
-          },
-          "produce_id"
-        )
-      )[0].produce_id;
+      let search = await db("Produce")
+        .where({ name: body.produce })
+        .select("produce_id");
+      console.log(search);
+
+      if (search.length) {
+        body.produce = search[0].produce_id;
+      } else {
+        body.produce = (
+          await db("Produce").insert(
+            {
+              name: body.produce
+            },
+            "produce_id"
+          )
+        )[0];
+      }
     }
     console.log(body);
     let data = (await db("Listing").insert(body, "*"))[0];

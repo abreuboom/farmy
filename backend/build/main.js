@@ -117,43 +117,53 @@ app.get("/api/listings", function (req, res) { return __awaiter(void 0, void 0, 
 app.post("/api/listings", function (_a, res) {
     var body = _a.body;
     return __awaiter(void 0, void 0, void 0, function () {
-        var newProdID, _b, data, E_1;
+        var newProdID, search, _b, data, E_1;
         return __generator(this, function (_c) {
             switch (_c.label) {
                 case 0:
                     res.setHeader("Access-Control-Allow-Origin", "*");
                     _c.label = 1;
                 case 1:
-                    _c.trys.push([1, 6, , 7]);
+                    _c.trys.push([1, 8, , 9]);
                     newProdID = void 0;
-                    if (!(typeof body.produce === "string")) return [3 /*break*/, 3];
+                    if (!(typeof body.produce === "string")) return [3 /*break*/, 5];
+                    return [4 /*yield*/, db("Produce")
+                            .where({ name: body.produce })
+                            .select("produce_id")];
+                case 2:
+                    search = _c.sent();
+                    console.log(search);
+                    if (!search.length) return [3 /*break*/, 3];
+                    body.produce = search[0].produce_id;
+                    return [3 /*break*/, 5];
+                case 3:
                     _b = body;
                     return [4 /*yield*/, db("Produce").insert({
                             name: body.produce
                         }, "produce_id")];
-                case 2:
-                    _b.produce = (_c.sent())[0].produce_id;
-                    _c.label = 3;
-                case 3:
+                case 4:
+                    _b.produce = (_c.sent())[0];
+                    _c.label = 5;
+                case 5:
                     console.log(body);
                     return [4 /*yield*/, db("Listing").insert(body, "*")];
-                case 4:
+                case 6:
                     data = (_c.sent())[0];
                     console.log(data);
                     return [4 /*yield*/, db("Produce")
                             .where({ produce_id: data.produce })
                             .increment("count", 1)];
-                case 5:
+                case 7:
                     _c.sent();
                     res.send(data);
-                    return [3 /*break*/, 7];
-                case 6:
+                    return [3 /*break*/, 9];
+                case 8:
                     E_1 = _c.sent();
                     console.log(E_1);
                     res.status(400);
                     res.send(E_1);
-                    return [3 /*break*/, 7];
-                case 7: return [2 /*return*/];
+                    return [3 /*break*/, 9];
+                case 9: return [2 /*return*/];
             }
         });
     });

@@ -16,7 +16,8 @@ export default class UploadForm extends Component {
       quantity: "",
       units: "lbs",
       produce: "",
-      picture: null
+      picture: null,
+      produceList: []
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -52,8 +53,11 @@ export default class UploadForm extends Component {
           title,
           quantity,
           units,
-          produce,
-          lister: 27,
+          produce: this.state.produceList.find(elem => elem.name === produce)
+            ? this.state.produceList.find(elem => elem.name === produce)
+                .produce_id
+            : produce,
+          lister: 1,
           img_link: snapshot.metadata.fullPath
         })
         .then(res => {
@@ -66,6 +70,14 @@ export default class UploadForm extends Component {
 
     console.log(this.state);
   };
+
+  componentDidMount() {
+    axios.get("/api/produce").then(data => {
+      this.setState({
+        produceList: data.data
+      });
+    });
+  }
   render() {
     return (
       <div className="container">
@@ -120,12 +132,18 @@ export default class UploadForm extends Component {
               Produce <br />
               <input
                 type="text"
+                list="produce"
                 name="produce"
                 value={this.state.produce}
                 onChange={this.handleChange}
                 placeholder="Tomatoes"
                 required
               />
+              <datalist id="produce">
+                {this.state.produceList.map(elem => (
+                  <option value={elem.name} key={elem.name} />
+                ))}
+              </datalist>
             </label>
             <ImageUploader
               withIcon={true}
