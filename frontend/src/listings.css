@@ -89,9 +89,9 @@
   padding: 1rem 1rem;
   font-size: 1.25rem;
 }
-
-.listing-button {
+.listing-button a {
   color: white;
+  padding: 0;
 }
 
 /*# sourceMappingURL=listings.css.map */

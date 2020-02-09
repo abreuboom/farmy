@@ -16,20 +16,20 @@ export default class Listing extends Component {
         <div className="listing-gradient"></div>
         <div className="listing-header">
           <div className="listing-age caps">
-            <p>{this.props.date_posted}</p>
+            <p>{this.props.quantity} left</p>
           </div>
         </div>
         <div className="listing-content">
           <div className="listing-details">
             <h2>{this.props.produce[0].name}</h2> <br />
             <p>
-              {this.props.price} per {this.props.units}
+              ${this.props.price} per {this.props.units}
             </p>
           </div>
           <button className="listing-button">
             <Link
               to={{
-                pathname: `listing?id=${this.props.id}`,
+                pathname: `listing?id=${this.props.offer_id}`,
                 query: "/listing/"
               }}
             >
