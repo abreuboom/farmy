@@ -19,7 +19,7 @@ export default class App extends Component {
     this.state = {
       listings: [],
       produce: [],
-      produceFilter: "none",
+      produceFilter: "All",
       currentListing: 0,
       users: []
     };
@@ -29,6 +29,11 @@ export default class App extends Component {
     this.getData();
   }
 
+  changeFilter = filterOption => {
+    this.setState({
+      filter: filterOption
+    });
+  };
   getData = () => {
     const pre = "https://cors-anywhere.herokuapp.com/";
     const urls = [
@@ -89,7 +94,7 @@ export default class App extends Component {
 
     return parseInt(id);
   }
-  getAllUsers = username => {
+  getAllUsers = () => {
     return new Promise((resolve, rej) => {
       axios
         .get("/api/users")
@@ -104,8 +109,8 @@ export default class App extends Component {
     });
   };
 
-  setFilter(filter) {
-    this.setState({ produceFilter: filter });
+  setFilter(e) {
+    this.setState({ produceFilter: e.target.value });
   }
 
   render() {
@@ -150,7 +155,10 @@ export default class App extends Component {
                       setFilter={this.setFilter}
                     />
 
-                    <ListingList listings={this.state.listings} />
+                    <ListingList
+                      listings={this.state.listings}
+                      produceFilter={this.state.produceFilter}
+                    />
                   </>
                 );
               }}
@@ -166,7 +174,7 @@ export default class App extends Component {
 const UserSelector = () => {
   let [state, setState] = useState([]);
 
-  Axios.get("/api/users").then(data => {
+  axios.get("/api/users").then(data => {
     setState(data.data);
   });
 

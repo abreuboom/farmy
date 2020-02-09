@@ -1,19 +1,6 @@
 import React, { Component } from "react";
 
 export default class ProduceFilter extends Component {
-  constructor(props) {
-    super(props);
-    this.filterListings = this.filterListings.bind(this);
-    this.state = {
-      filter: "none"
-    };
-  }
-
-  filterListings(filter) {
-    this.setState({ filter: filter });
-    this.props.setFilter(this.state.filter);
-  }
-
   render() {
     let { categories } = this.props;
     let filter = filter => this.filterListings(filter);
@@ -21,10 +8,14 @@ export default class ProduceFilter extends Component {
     return (
       <div className="produce-filter-container container">
         <div className="produce-filter">
-          <ProduceCategory {...{ name: "All" }} />
-          {categories.map(function(produce, i) {
+          <ProduceCategory name="All" setFilter={this.props.setFilter} />
+          {categories.map((produce, i) => {
             return (
-              <ProduceCategory name={produce.name} onClick={filter} key={i} />
+              <ProduceCategory
+                name={produce.name}
+                setFilter={this.props.setFilter}
+                key={i}
+              />
             );
           })}
         </div>
@@ -40,7 +31,11 @@ class ProduceCategory extends Component {
 
   render() {
     return (
-      <button className="produce-category" onClick={this.handleClick}>
+      <button
+        value={this.props.name}
+        className="produce-category"
+        onClick={this.props.setFilter}
+      >
         {this.name}
       </button>
     );

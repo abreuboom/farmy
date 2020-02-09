@@ -1,12 +1,10 @@
 import "../form.css";
 
 import React, { Component } from "react";
-import { imagesRef, uploadImg } from "../actions/storage";
+import { uploadImg } from "../actions/storage";
 
 import ImageUploader from "react-images-upload";
 import axios from "axios";
-import uuidv4 from "uuid/v4";
-import { imagesRef, uploadImg } from "../actions/storage";
 import { userStore } from "../stores/UserStore";
 
 export default class UploadForm extends Component {
@@ -43,9 +41,6 @@ export default class UploadForm extends Component {
     e.preventDefault();
     let { price, title, quantity, units, produce } = this.state;
     // do something here
-    let extension = this.state.picture.name.substr(
-      this.state.picture.name.length - 4
-    );
     uploadImg(this.state.picture).then(snapshot => {
       console.log(snapshot.metadata.fullPath);
       axios

@@ -96,12 +96,12 @@ app.get("/api/listings", function (req, res) { return __awaiter(void 0, void 0, 
                                         .select(["name", "category"])
                                         .where({ produce_id: elem.produce })];
                                 case 1:
-                                    produce = _a.sent();
+                                    produce = (_a.sent())[0];
                                     return [4 /*yield*/, db("User")
                                             .select(["username"])
                                             .where({ id: elem.lister })];
                                 case 2:
-                                    lister = _a.sent();
+                                    lister = (_a.sent())[0];
                                     elem.produce = produce;
                                     elem.lister = lister;
                                     return [2 /*return*/, elem];
