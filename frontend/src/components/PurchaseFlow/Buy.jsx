@@ -1,44 +1,65 @@
-import React, { Component } from "react";
+import "./css/pf.css";
 
+import React, { Component } from "react";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./css/pf.css"
 export default class Buy extends Component {
   render() {
-    return (
-      <div className="container">
-        <div className="buy-container" style={{ }}>
-          <img src={this.props.img_url}></img>
-          <div className="buy-item">
-            <div id="title">
-            {this.props.title}
+    let { listing } = this.props;
+    console.log(this.props);
+
+    console.log(listing);
+
+    if (listing) {
+      console.log("yeet: " + listing.offer_id);
+
+      return (
+        <div className="container">
+          <div className="buy-container" style={{}}>
+            <img src={listing.img_url} alt=""></img>
+            <div className="buy-item">
+              <div id="title">{listing.title}</div>
+              <p id="rating">4.9 stars</p>
+              <p id="location">
+                Boston, MA
+                <span id="distance">
+                  <float>0.1</float> mi
+                </span>
+              </p>
+              <p id="tags">
+                Tags:
+                <span className="produce-category.name">
+                  {" "}
+                  Veggies
+                </span>
+                <span className="produce-category.name">
+                  {" "}
+                  Tomato{" "}
+                </span>
+              </p>
             </div>
-            <p id="rating">
-              4.9 stars
-            </p>
-            <p id="location">
-              Boston, MA
-              <p id="distance"><float>0.1</float> mi</p>
-            </p>
-            <p id="tags">Tags:
-              <span className="produce-category" id="veggies"> Veggies</span>
-              <span className="produce-category" id="tomato"> Tomato </span>
-            </p>
-
+            <hr></hr>
+            <div className="buy-detail">
+              <p id="price">
+                {listing.price} per {listing.units}
+              </p>
+              <p id="availablility">{listing.quantity} Units Available</p>
+            </div>
+            <hr></hr>
+            <div className="buy-seller">
+              <p id="title">Seller Info</p>
+              <FontAwesomeIcon id ="pp" icon={faUserCircle}/>
+              <p>Jack</p>
+            </div>
+            <div className="contact-seller">
+              <span id="contactBox">Contact Seller</span>
+            </div>
           </div>
-          <hr></hr>
-          <div className = "buy-detail">
-            <p id="price">{this.props.price} per {this.props.units}</p>
-            <p id="availablility">{this.props.quantity} Units Available</p>
-          </div>
-          <hr></hr>
-          <div className="buy-seller">
-            <p id="title">Seller Info</p>
-            <p>Jack</p>
-          </div>
-          <div className ="contact-seller">
-            <span id="contactBox">Contact Seller</span>
-          </div>
-
         </div>
-      </div>);
+      );
+    } else {
+      return <div>404 NOT FOUND</div>;
     }
   }
+}

@@ -1,4 +1,4 @@
-.container {
+.base-container {
  background-color: white;
 }
 .buy-container {
@@ -84,25 +84,12 @@
   text-align: left;
 }
 
-.produce-category {
+.produce-category.name {
   display: inline;
   margin-left: 10px;
   margin-right: 10px;
-  font-size: 14px;
-  color: #FFFFFF;
-  border-radius: 50px;
-  padding: 8px 16px;
-  white-space: nowrap;
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-#veggies {
+  color: white;
   background-color: #80db55;
-}
-
-#tomato {
-  background-color: #ff6347;
 }
 
 .contact-seller {
@@ -128,4 +115,8 @@
   white-space: nowrap;
   font-weight: 800;
   text-transform: uppercase;
+}
+
+#pp {
+  font-size: 104px;
 }
