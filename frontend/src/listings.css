@@ -28,6 +28,7 @@
   background-size: cover;
   border-radius: 10px;
   overflow: hidden;
+  margin-top: 24px;
   margin-bottom: 16px;
 }
 .listing img {

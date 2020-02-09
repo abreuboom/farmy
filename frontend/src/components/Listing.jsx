@@ -6,10 +6,12 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 export default class Listing extends Component {
   render() {
+    console.log(this.props);
+
     return (
       <div
         className="listing"
-        style={{ backgroundImage: "url(" + this.props.img_url + ")" }}
+        style={{ backgroundImage: "url(" + this.props.img_link + ")" }}
       >
         <div className="listing-gradient"></div>
         <div className="listing-header">
@@ -19,8 +21,10 @@ export default class Listing extends Component {
         </div>
         <div className="listing-content">
           <div className="listing-details">
-            <h2>{this.props.title}</h2> <br />
-            <p>{this.props.price}</p>
+            <h2>{this.props.produce[0].name}</h2> <br />
+            <p>
+              {this.props.price} per {this.props.units}
+            </p>
           </div>
           <button className="listing-button">
             <Link

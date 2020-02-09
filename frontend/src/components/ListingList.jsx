@@ -6,7 +6,10 @@ import Listing from "./Listing";
 
 export default class ListingList extends Component {
   listings = this.props.listings;
+
   render() {
+    // console.log(this.listings);
+
     return (
       <div className="container">
         <div className="listings-container">

@@ -18,8 +18,6 @@
 }
 
 .listings-title {
-  //   display: inline;
-  //   left: 0;
   font-size: 1.5rem;
 }
 
@@ -36,6 +34,7 @@
   background-size: cover;
   border-radius: $master-radius;
   overflow: hidden;
+  margin-top: 24px;
 
   margin-bottom: 16px;
 
