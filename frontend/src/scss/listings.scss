@@ -1,108 +1,108 @@
 @import "colors";
 @import "dimensions";
 
-.listings-list-container {
-    margin-top: 25px;
-}
-
 .listings-container {
-    width: $master-width;
-    max-width: 90%;
+  position: relative;
 
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
+  width: $master-width;
+  max-width: 90%;
 
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
 
-    p {
-        text-align: left;
-    }
+  p {
+    text-align: left;
+  }
 }
 
 .listings-title {
-    font-size: 1.5rem;
-    padding-top: 25px;
+  font-size: 1.5rem;
 }
 
 .listing-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .listing {
-    position: relative;
+  position: relative;
+  width: 100%;
+  height: 400px;
+  background-size: cover;
+  border-radius: $master-radius;
+  overflow: hidden;
+  margin-top: 24px;
+
+  margin-bottom: 16px;
+
+  img {
     width: 100%;
-    height: 400px;
-    background-size: cover;
-    border-radius: 10px;
-    overflow: hidden;
-
-    margin-bottom: 16px;
-
-    img {
-        width: 100%;
-    }
+  }
 }
 
 .listing-gradient {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, black, transparent 75%);
-    background-size: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, black, transparent 60%);
+  background-size: cover;
 }
 
 .listing-header {
-    position: relative;
-    width: 100%;
-    height: 20%;
+  position: relative;
+  width: 100%;
+  height: 20%;
 }
 
 .listing-age {
-    position: absolute;
-    padding: 0 20px 0 20px;
-    background-color: white;
-    right: 0;
-    text-align: right;
+  position: absolute;
+  padding: 0 20px 0 20px;
+  background-color: white;
+  right: 0;
+  text-align: right;
+  border-radius: 0 0 0 10px;
 }
 
 .listing-content {
-    position: absolute;
-    width: 95%;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  position: absolute;
+  width: 95%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 
-    text-align: left;
-    color: white;
+  text-align: left;
+  color: white;
 
-
-
-    h2 {
-        display: inline;
-        padding: 0;
-    }
+  h2 {
+    display: inline;
+    padding: 0;
+  }
 }
 
 .listing-details {
-
-    p {
-        display: inline;
-        padding: 0;
-    }
+  p {
+    display: inline;
+    padding: 0;
+  }
 }
 
 .listing-button {
-    display: block;
-    border-radius: 50%;
-    padding: 1rem 1rem;
-    font-size: 1.25rem;
+  display: block;
+  border-radius: 50%;
+  padding: 1rem 1rem;
+  font-size: 1.25rem;
+
+  a {
+    color: white;
+    padding: 0;
+  }
 }

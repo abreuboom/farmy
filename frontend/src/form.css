@@ -1,0 +1,49 @@
+.upload-form {
+  padding-top: 25px;
+  margin: 0 auto;
+  width: 600px;
+  max-width: 90%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  display: block;
+  margin-bottom: 32px;
+  color: #c2c2c2;
+  font-size: 14px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+input {
+  color: #1f1f1f;
+  display: inline-block;
+  border: none;
+  padding: 16px 24px;
+  font-size: 18px;
+  text-decoration: none;
+  width: 90%;
+  border-radius: 10px;
+}
+
+input::placeholder {
+  color: #c2c2c2;
+}
+
+input[type=text],
+input[type=number] {
+  background-color: #f1f1f1;
+}
+
+.submit-btn {
+  position: relative;
+  margin: 0 auto;
+  font-weight: 800;
+  text-transform: uppercase;
+  border-radius: 10px;
+  width: 100%;
+}
+
+/*# sourceMappingURL=form.css.map */
