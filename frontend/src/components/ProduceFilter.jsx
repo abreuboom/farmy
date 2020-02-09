@@ -15,16 +15,18 @@ export default class ProduceFilter extends Component {
   }
 
   render() {
-    let { categories } = this.props.categories;
+    let { categories } = this.props;
     let filter = filter => this.filterListings(filter);
 
     return (
       <div className="produce-filter-container container">
         <div className="produce-filter">
           <ProduceCategory {...{ name: "All" }} />
-          {/* {categories.map(function(produce, i) {
-            return <ProduceCategory {...produce} onClick={filter} key={i} />;
-          })} */}
+          {categories.map(function(produce, i) {
+            return (
+              <ProduceCategory name={produce.name} onClick={filter} key={i} />
+            );
+          })}
         </div>
       </div>
     );
