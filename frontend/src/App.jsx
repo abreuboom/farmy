@@ -9,7 +9,7 @@ import ListingList from "./components/ListingList";
 import NavigationBar from "./components/NavigationBar";
 import ProduceFilter from "./components/ProduceFilter";
 import UploadForm from "./components/UploadForm";
-
+import axios from "axios";
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +18,8 @@ export default class App extends Component {
       listings: [],
       produce: [],
       produceFilter: "none",
-      currentListing: 0
+      currentListing: 0,
+      users: []
     };
   }
 
@@ -35,12 +36,15 @@ export default class App extends Component {
     Promise.all(urls.map(url => fetch(pre + url).then(res => res.json())))
       .then(data => {
         console.log(data);
+        this.getAllUsers().then(allUsers=>{
 
-        this.setState({ listings: data[0], produce: data[1] });
-      })
-      .catch(error => {
-        console.error(error);
-      });
+          this.setState({users:allUsers, listings: data[0], produce: data[1] });
+        })
+        .catch(error => {
+          console.error(error);
+        });
+
+        })
   };
 
   // componentDidUpdate() {
@@ -79,6 +83,18 @@ export default class App extends Component {
 
     return parseInt(id);
   }
+  getAllUsers = (username)=>{
+    return new Promise((resolve, rej)=>{
+
+    axios.get("/api/users").then(res=>{
+      console.log(res)
+      resolve(res.data)
+    }).catch(e=>{
+      console.log(e.response)
+      rej(e)
+    })
+  })
+  }
 
   setFilter(filter) {
     this.setState({ produceFilter: filter });
@@ -96,13 +112,19 @@ export default class App extends Component {
             <Route
               path="/buy/:id"
               render={route => {
+
                 let i = route.match.params.id;
+                let matchedListing = this.state.listings.find(
+                  x => x.offer_id === parseInt(i)
+                )
+                console.log(this.state)
                 return (
                   <Buy
                     {...route}
-                    listing={this.state.listings.find(
-                      x => x.offer_id === parseInt(i)
+                    lister={this.state.users.find(
+                      x => x.username === (matchedListing.lister[0].username)
                     )}
+                    listing={matchedListing}
                   />
                 );
               }}

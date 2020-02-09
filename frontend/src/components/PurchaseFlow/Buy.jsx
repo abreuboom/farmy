@@ -5,6 +5,7 @@ import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./css/pf.css"
 export default class Buy extends Component {
+
   render() {
     let { listing } = this.props;
     console.log(this.props);
@@ -50,10 +51,10 @@ export default class Buy extends Component {
             <div className="buy-seller">
               <p id="title">Seller Info</p>
               <FontAwesomeIcon id ="pp" icon={faUserCircle}/>
-              <p>Jack</p>
+              <p>{this.props.lister.first_name+" "+this.props.lister.last_name}</p>
             </div>
             <div className="contact-seller">
-              <a href="sms:+123456789"><span id="contactBox">Contact Seller</span></a>
+              <a href={this.props.lister.phone_num? `sms:+1${this.props.lister.phone_num}`:"#"}><span id="contactBox">Contact Seller</span></a>
             </div>
           </div>
         </div>
