@@ -51,6 +51,26 @@ input[type="number"] {
   font-weight: 800;
   text-transform: uppercase;
   border-radius: $master-radius;
+  margin-bottom: 100px;
 
   width: 100%;
+}
+
+
+#loading {
+  background-color: rgba(255, 255, 255, 0.75);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  margin: 0 auto;
+  z-index: 2;
+  display: none;
+}
+
+#upload-preview {
+  margin-top: 5;
+  width: "100%";
+  height: 400px;
+  border-radius: $master-radius;
+
 }
