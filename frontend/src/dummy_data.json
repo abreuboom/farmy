@@ -6,7 +6,7 @@
       "price": "$2",
       "units": "pound",
       "quantity": 2,
-      "produce_type": "tomato",
+      "produce_id": "1",
       "img_url": "https://www.6amgroup.com/wp-content/uploads/2015/07/shaq-feat.jpg"
     },
     {
