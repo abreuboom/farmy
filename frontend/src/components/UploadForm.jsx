@@ -65,35 +65,39 @@ export default class UploadForm extends Component {
     let { price, title, quantity, units, produce } = this.state;
     // do something here
     uploadImg(this.state.picture).then(snapshot => {
-      console.log(snapshot.metadata.fullPath);
-      axios
-        .post("api/listings", {
-          price,
-          title,
-          quantity,
-          units,
-          produce: this.state.produceList.find(elem => elem.name === produce)
-            ? this.state.produceList.find(elem => elem.name === produce)
-                .produce_id
-            : produce,
-          lister: userStore.user.id,
-          img_link: snapshot.metadata.fullPath
-        })
-        .then(res => {
-          console.log(res);
-          this.props.getData();
-        })
-        .catch(e => {
-          snapshot
-            .ref()
-            .delete()
-            .then(() => {
-              console.log(e.response);
-            });
-        });
-    });
+      let geo = navigator.geolocation;
+      let geotag = geo.getCurrentPosition(() => {
+        console.log(snapshot.metadata.fullPath);
+        axios
+          .post("api/listings", {
+            price,
+            title,
+            quantity,
+            units,
+            geotag,
+            produce: this.state.produceList.find(elem => elem.name === produce)
+              ? this.state.produceList.find(elem => elem.name === produce)
+                  .produce_id
+              : produce,
+            lister: userStore.user.id,
+            img_link: snapshot.metadata.fullPath
+          })
+          .then(res => {
+            console.log(res);
+            this.props.getData();
+          })
+          .catch(e => {
+            snapshot
+              .ref()
+              .delete()
+              .then(() => {
+                console.log(e.response);
+              });
+          });
+      });
 
-    console.log(this.state);
+      console.log(this.state);
+    });
   };
 
   componentDidMount() {
