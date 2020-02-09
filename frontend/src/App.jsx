@@ -9,7 +9,7 @@ import ListingList from "./components/ListingList";
 import NavigationBar from "./components/NavigationBar";
 import ProduceFilter from "./components/ProduceFilter";
 import UploadForm from "./components/UploadForm";
-import Axios from "axios";
+import axios from "axios";
 import { userStore } from "./stores/UserStore";
 
 export default class App extends Component {
