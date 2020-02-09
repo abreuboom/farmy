@@ -21,7 +21,9 @@ export default class Listing extends Component {
   }
 
   render() {
-    let id = (this.props.produce[0].name + this.props.offer_id)
+    console.log(this.props);
+
+    let id = (this.props.produce.name + this.props.offer_id)
       .replace(/\s+/g, "")
       .toLowerCase();
     getImg(this.props.img_link, id);
@@ -35,7 +37,7 @@ export default class Listing extends Component {
         </div>
         <div className="listing-content">
           <div className="listing-details">
-            <h2>{this.props.produce[0].name}</h2> <br />
+            <h2>{this.props.produce.name}</h2> <br />
             <p>
               ${this.props.price} per {this.props.units}
             </p>

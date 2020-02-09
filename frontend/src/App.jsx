@@ -35,12 +35,8 @@ export default class App extends Component {
     });
   };
   getData = () => {
-    const pre = "https://cors-anywhere.herokuapp.com/";
-    const urls = [
-      "http://farme-2020.herokuapp.com/api/listings",
-      "http://farme-2020.herokuapp.com/api/produce"
-    ];
-    Promise.all(urls.map(url => fetch(pre + url).then(res => res.json()))).then(
+    const urls = ["/api/listings", "/api/produce"];
+    Promise.all(urls.map(url => fetch(url).then(res => res.json()))).then(
       data => {
         console.log(data);
         this.getAllUsers()
