@@ -1,10 +1,10 @@
 async function seed(knex) {
-  await knex("Listing").truncate();
-  await knex("Request").truncate();
-  await knex("Produce").truncate();
-  await knex("Category").truncate();
-  await knex("User").truncate();
-  await knex("Address").truncate();
+  await knex("Listing").del();
+  await knex("Request").del();
+  await knex("Produce").del();
+  await knex("Category").del();
+  await knex("User").del();
+  await knex("Address").del();
 
   await knex("Category").insert([
     {
@@ -15,22 +15,33 @@ async function seed(knex) {
     }
   ]);
 
+  let { category_id: catFruit_id } = (
+    await knex("Category")
+      .select("category_id")
+      .where({ name: "Fruit" })
+  )[0];
+
+  let { category_id: catVeg_id } = (
+    await knex("Category")
+      .select("category_id")
+      .where({ name: "Vegetable" })
+  )[0];
   await knex("Produce").insert([
     {
       name: "Apple",
-      category: 1
+      category: catFruit_id
     },
     {
       name: "Pear",
-      category: 1
+      category: catFruit_id
     },
     {
       name: "Spinach",
-      category: 2
+      category: catVeg_id
     },
     {
       name: "Collard Greens",
-      category: 2
+      category: catVeg_id
     }
   ]);
 
@@ -48,6 +59,17 @@ async function seed(knex) {
       state: "BB"
     }
   ]);
+
+  let { address_id: addr1 } = (
+    await knex("Address")
+      .select("address_id")
+      .where({ state: "AA" })
+  )[0];
+  let { address_id: addr2 } = (
+    await knex("Address")
+      .select("address_id")
+      .where({ state: "BB" })
+  )[0];
   await knex("User").insert([
     {
       username: "test1",
@@ -55,7 +77,7 @@ async function seed(knex) {
       last_name: "one",
       email: "111@test.com",
       phone_num: 1111111111,
-      address_id: 1
+      address_id: addr1
     },
     {
       username: "test2",
@@ -63,7 +85,7 @@ async function seed(knex) {
       last_name: "two",
       email: "222@test.com",
       phone_num: 2222222222,
-      address_id: 2
+      address_id: addr2
     },
     {
       username: "test3",
@@ -73,44 +95,70 @@ async function seed(knex) {
       phone_num: 3333333333
     }
   ]);
+  let prod1 = (
+    await knex("Produce")
+      .select("produce_id")
+      .where({ name: "Apple" })
+  )[0].produce_id;
+  let prod2 = (
+    await knex("Produce")
+      .select("produce_id")
+      .where({ name: "Spinach" })
+  )[0].produce_id;
+  let user1 = (
+    await knex("User")
+      .select("id")
+      .where({ username: "test1" })
+  )[0].id;
+  let user2 = (
+    await knex("User")
+      .select("id")
+      .where({ username: "test2" })
+  )[0].id;
   await knex("Listing").insert([
     {
       quantity: 1,
       units: "count",
       img_link: "#",
       price: 1,
-      lister: 1,
-      produce: 1
+      lister: user1,
+      produce: prod1
     },
     {
       quantity: 1,
       units: "count",
       img_link: "#",
       price: 1,
-      lister: 1,
-      produce: 2
+      lister: user1,
+      produce: prod2
     },
     {
       quantity: 10,
       units: "lbs",
       img_link: "#",
       price: 12,
-      lister: 2,
-      produce: 2
+      lister: user2,
+      produce: prod2
     }
   ]);
+
+  let prod3 = (
+    await knex("Produce")
+      .select("produce_id")
+      .where({ name: "Pear" })
+  )[0].produce_id;
   return knex("Request").insert([
     {
       quantity: 1,
       units: "count",
-      requester: 1,
-      produce: 1
+      requester: user1,
+      produce: prod1
     },
     {
       quantity: 20,
       units: "lbs",
-      requester: 2,
-      produce: 3
+      requester: user2,
+      produce: prod3
     }
   ]);
 }
