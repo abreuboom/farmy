@@ -1,9 +1,10 @@
 import "../form.css";
 
 import React, { Component } from "react";
+import { imagesRef, uploadImg } from "../actions/storage";
 
-import axios from "axios";
 import ImageUploader from "react-images-upload";
+import axios from "axios";
 import uuidv4 from "uuid/v4";
 import { imagesRef, uploadImg } from "../actions/storage";
 import { userStore } from "../stores/UserStore";
@@ -62,6 +63,7 @@ export default class UploadForm extends Component {
         })
         .then(res => {
           console.log(res);
+          this.props.getData();
         })
         .catch(e => {
           snapshot
