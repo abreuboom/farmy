@@ -35,6 +35,18 @@ app.get("/listings", async (req, res) => {
   );
 });
 
+app.post("/listings", async ({ body }, res) => {
+  try {
+    let data = (await db("Listing").insert(body, "*"))[0];
+    await db("Produce")
+      .where({ produce_id: body.produce_id })
+      .increment("count", 1);
+    res.send(data);
+  } catch (E) {
+    res.send(E);
+  }
+});
+
 app.get("/users", async (req, res) => {
   res.send(await db("User").select("*"));
 });
@@ -76,6 +88,16 @@ app.get("/requests", async (req, res) => {
       })
     )
   );
+});
+
+app.get("/produce", async (req, res) => {
+  let data = await db("Produce").select("*");
+  res.send(data);
+});
+
+app.get("/categories", async (req, res) => {
+  let data = await db("Category").select("*");
+  res.send(data);
 });
 
 app.listen(process.env.PORT, () => {

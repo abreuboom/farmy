@@ -114,6 +114,33 @@ app.get("/listings", function (req, res) { return __awaiter(void 0, void 0, void
         }
     });
 }); });
+app.post("/listings", function (_a, res) {
+    var body = _a.body;
+    return __awaiter(void 0, void 0, void 0, function () {
+        var data, E_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, db("Listing").insert(body, "*")];
+                case 1:
+                    data = (_b.sent())[0];
+                    return [4 /*yield*/, db("Produce")
+                            .where({ produce_id: body.produce_id })
+                            .increment("count", 1)];
+                case 2:
+                    _b.sent();
+                    res.send(data);
+                    return [3 /*break*/, 4];
+                case 3:
+                    E_1 = _b.sent();
+                    res.send(E_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+});
 app.get("/users", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, _b;
     return __generator(this, function (_c) {
@@ -191,6 +218,30 @@ app.get("/requests", function (req, res) { return __awaiter(void 0, void 0, void
                     }); }))];
             case 2:
                 _b.apply(_a, [_c.sent()]);
+                return [2 /*return*/];
+        }
+    });
+}); });
+app.get("/produce", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var data;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, db("Produce").select("*")];
+            case 1:
+                data = _a.sent();
+                res.send(data);
+                return [2 /*return*/];
+        }
+    });
+}); });
+app.get("/categories", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var data;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, db("Category").select("*")];
+            case 1:
+                data = _a.sent();
+                res.send(data);
                 return [2 /*return*/];
         }
     });
