@@ -17,16 +17,23 @@ export default class UploadForm extends Component {
       units: "lbs",
       produce: "",
       picture: null,
-      produceList: []
+      produceList: [],
+      pictureURI: ""
     };
 
     this.onDrop = this.onDrop.bind(this);
   }
 
-  onDrop(picture) {
-    this.setState({
-      picture: picture[0]
-    });
+  onDrop([picture]) {
+    let reader = new FileReader();
+    document.reader = reader;
+    reader.onloadend = () => {
+      this.setState({
+        picture: picture,
+        pictureURI: reader.result
+      });
+    };
+    reader.readAsDataURL(picture);
   }
 
   handleChange = e => {
@@ -155,10 +162,18 @@ export default class UploadForm extends Component {
               maxFileSize={5242880}
               singleImage={true}
             />
-
             <button action="submit" className="submit-btn">
               Submit
             </button>
+            <img
+              style={{
+                marginTop: 5,
+                width: "100%",
+                height: "auto",
+                borderRadius: 10
+              }}
+              src={this.state.pictureURI}
+            />
           </form>
         </div>
       </div>
