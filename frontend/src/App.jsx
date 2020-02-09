@@ -24,7 +24,7 @@ export default class App extends Component {
   componentDidMount() {
     let url =
       "https://cors-anywhere.herokuapp.com/" +
-      "http://farme-2020.herokuapp.com/listings";
+      "http://farme-2020.herokuapp.com/api/listings";
     fetch(url)
       .then(res => {
         return res.json();
@@ -106,7 +106,8 @@ export default class App extends Component {
               <ListingPage {...this.getCurrentListing()} />
             </Route> */}
             <Route
-              path="/browse"
+              exact
+              path="/"
               render={() => {
                 return (
                   <>
