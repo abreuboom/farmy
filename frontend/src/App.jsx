@@ -11,7 +11,7 @@ import ProduceFilter from "./components/ProduceFilter";
 import UploadForm from "./components/UploadForm";
 import axios from "axios";
 import { userStore } from "./stores/UserStore";
-
+import { ScrollToTop } from "./ScrollToTop";
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -44,16 +44,16 @@ export default class App extends Component {
       data => {
         console.log(data);
         this.getAllUsers()
-          .then(allUsers => {
-            this.setState({
-              users: allUsers,
-              listings: data[0],
-              produce: data[1]
-            });
-          })
-          .catch(error => {
-            console.error(error);
+        .then(allUsers => {
+          this.setState({
+            users: allUsers,
+            listings: data[0],
+            produce: data[1]
           });
+        })
+        .catch(error => {
+          console.error(error);
+        });
       }
     );
   };
@@ -97,15 +97,15 @@ export default class App extends Component {
   getAllUsers = () => {
     return new Promise((resolve, rej) => {
       axios
-        .get("/api/users")
-        .then(res => {
-          console.log(res);
-          resolve(res.data);
-        })
-        .catch(e => {
-          console.log(e.response);
-          rej(e);
-        });
+      .get("/api/users")
+      .then(res => {
+        console.log(res);
+        resolve(res.data);
+      })
+      .catch(e => {
+        console.log(e.response);
+        rej(e);
+      });
     });
   };
 
@@ -113,11 +113,13 @@ export default class App extends Component {
     this.setState({ produceFilter: e.target.value });
   }
 
+
   render() {
     return (
       <div className="App">
         <Router>
           <NavigationBar />
+          <ScrollToTop />
           <Switch>
             <Route path="/sell">
               <UploadForm getData={this.getData} />
@@ -137,57 +139,57 @@ export default class App extends Component {
                       x => x.username === matchedListing.lister[0].username
                     )}
                     listing={matchedListing}
-                  />
+                    />
                 );
               }}
-            ></Route>
+              ></Route>
             {/* <Route path="/listing/">
               <ListingPage {...this.getCurrentListing()} />
-            </Route> */}
-            <Route
-              exact
-              path="/"
-              render={() => {
-                return (
-                  <>
+              </Route> */}
+              <Route
+                exact
+                path="/"
+                render={() => {
+                  return (
+                    <>
                     <ProduceFilter
                       categories={this.state.produce}
                       setFilter={this.setFilter}
-                    />
+                      />
 
                     <ListingList
                       listings={this.state.listings}
                       produceFilter={this.state.produceFilter}
-                    />
-                  </>
+                      />
+                    </>
                 );
               }}
-            ></Route>
+              ></Route>
             <Route path="/login" component={UserSelector} />>
-          </Switch>
-        </Router>
+            </Switch>
+          </Router>
+        </div>
+      );
+    }
+  }
+
+  const UserSelector = () => {
+    let [state, setState] = useState([]);
+
+    axios.get("/api/users").then(data => {
+      setState(data.data);
+    });
+
+    return (
+      <div>
+        {state.map(elem => (
+          <button
+            onClick={() => userStore.getUser(elem.username)}
+            key={elem.username}
+            >
+            {elem.username}
+          </button>
+        ))}
       </div>
     );
-  }
-}
-
-const UserSelector = () => {
-  let [state, setState] = useState([]);
-
-  axios.get("/api/users").then(data => {
-    setState(data.data);
-  });
-
-  return (
-    <div>
-      {state.map(elem => (
-        <button
-          onClick={() => userStore.getUser(elem.username)}
-          key={elem.username}
-        >
-          {elem.username}
-        </button>
-      ))}
-    </div>
-  );
-};
+  };

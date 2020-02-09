@@ -30,11 +30,11 @@ export default class Buy extends Component {
               </p>
               <p id="tags">
                 Tags:
-                <span className="produce-category.name">
+                <span className="produce-category name">
                   {" "}
                   Veggies
                 </span>
-                <span className="produce-category.name">
+                <span className="produce-category name">
                   {" "}
                   Tomato{" "}
                 </span>
