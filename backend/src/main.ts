@@ -3,6 +3,19 @@ import body_parser from "body-parser";
 import knex from "knex";
 // @ts-ignore
 import * as knexConfig from "../knexfile";
+// @ts-ignore
+import Clarifai from "clarifai";
+
+require("dotenv").config();
+
+const clarifai = new Clarifai.App({
+  apiKey: process.env.CLARIFAI_API_KEY
+});
+const predictFood = (rawBytes: string) => {
+  return clarifai.models.predict("bd367be194cf45149e75f01d59f77ba7", {
+    base64: rawBytes
+  });
+};
 
 require("dotenv").config();
 
@@ -10,7 +23,7 @@ var db = knex<any, unknown[]>(knexConfig[process.env.NODE_ENV]);
 
 let app = express();
 
-app.use(body_parser.json());
+app.use(body_parser.json({ limit: "5mb" }));
 
 app.get("/", (req, res) => {
   res.send("abc");
@@ -140,6 +153,25 @@ app.get("/api/produce", async (req, res) => {
 app.get("/api/categories", async (req, res) => {
   let data = await db("Category").select("*");
   res.send(data);
+});
+
+app.post("/api/predict", async (req, res) => {
+  let dataURItotal = req.body.dataURI;
+  let rawBytes = dataURItotal.split(",")[1];
+
+  try {
+    console.log("start predict");
+
+    predictFood(rawBytes).then(
+      (prediction: any) => {
+        console.log("end predict");
+        res.send(prediction);
+      },
+      (err: any) => console.log(err)
+    );
+  } catch (e) {
+    res.send(e);
+  }
 });
 
 app.listen(process.env.PORT, () => {

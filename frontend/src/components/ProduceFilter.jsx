@@ -24,20 +24,14 @@ export default class ProduceFilter extends Component {
   }
 }
 
-class ProduceCategory extends Component {
-  name = this.props.name;
-  handleClick = () =>
-    this.props.onClick(this.name === "All" ? "none" : this.props.name);
-
-  render() {
-    return (
-      <button
-        value={this.props.name}
-        className="produce-category"
-        onClick={this.props.setFilter}
-      >
-        {this.name}
-      </button>
-    );
-  }
-}
+const ProduceCategory = props => {
+  return (
+    <button
+      value={props.name}
+      className="produce-category"
+      onClick={props.setFilter}
+    >
+      {props.name}
+    </button>
+  );
+};

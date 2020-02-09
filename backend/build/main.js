@@ -73,10 +73,21 @@ var body_parser_1 = __importDefault(require("body-parser"));
 var knex_1 = __importDefault(require("knex"));
 // @ts-ignore
 var knexConfig = __importStar(require("../knexfile"));
+// @ts-ignore
+var clarifai_1 = __importDefault(require("clarifai"));
+require("dotenv").config();
+var clarifai = new clarifai_1.default.App({
+    apiKey: process.env.CLARIFAI_API_KEY
+});
+var predictFood = function (rawBytes) {
+    return clarifai.models.predict("bd367be194cf45149e75f01d59f77ba7", {
+        base64: rawBytes
+    });
+};
 require("dotenv").config();
 var db = knex_1.default(knexConfig[process.env.NODE_ENV]);
 var app = express_1.default();
-app.use(body_parser_1.default.json());
+app.use(body_parser_1.default.json({ limit: "5mb" }));
 app.get("/", function (req, res) {
     res.send("abc");
 });
@@ -282,6 +293,24 @@ app.get("/api/categories", function (req, res) { return __awaiter(void 0, void 0
                 res.send(data);
                 return [2 /*return*/];
         }
+    });
+}); });
+app.post("/api/predict", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var dataURItotal, rawBytes;
+    return __generator(this, function (_a) {
+        dataURItotal = req.body.dataURI;
+        rawBytes = dataURItotal.split(",")[1];
+        try {
+            console.log("start predict");
+            predictFood(rawBytes).then(function (prediction) {
+                console.log("end predict");
+                res.send(prediction);
+            }, function (err) { return console.log(err); });
+        }
+        catch (e) {
+            res.send(e);
+        }
+        return [2 /*return*/];
     });
 }); });
 app.listen(process.env.PORT, function () {

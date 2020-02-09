@@ -18,7 +18,9 @@ export default class UploadForm extends Component {
       produce: "",
       picture: null,
       produceList: [],
-      pictureURI: ""
+      pictureURI: "",
+      prediction: {},
+      gettingPrediction: false
     };
 
     this.onDrop = this.onDrop.bind(this);
@@ -29,9 +31,23 @@ export default class UploadForm extends Component {
     document.reader = reader;
     reader.onloadend = () => {
       this.setState({
+        gettingPrediction: true,
         picture: picture,
         pictureURI: reader.result
       });
+
+      axios
+        .post("api/predict", { dataURI: reader.result })
+        .then(res => {
+          console.log(res);
+
+          this.setState({
+            gettingPrediction: false,
+            prediction: res.data,
+            produce: res.data.outputs[0].data.concepts[0].name
+          });
+        })
+        .catch(e => console.log(e.response));
     };
     reader.readAsDataURL(picture);
   }
@@ -88,6 +104,12 @@ export default class UploadForm extends Component {
     });
   }
   render() {
+    let { prediction } = this.state;
+    let concepts = [];
+    if (prediction.outputs) {
+      concepts = prediction.outputs[0].data.concepts;
+    }
+
     return (
       <div className="container">
         <div className="upload-form">
@@ -149,11 +171,17 @@ export default class UploadForm extends Component {
                 required
               />
               <datalist id="produce">
-                {this.state.produceList.map(elem => (
-                  <option value={elem.name} key={elem.name} />
-                ))}
+                {!concepts.length &&
+                  this.state.produceList.map(elem => (
+                    <option value={elem.name} key={elem.name} />
+                  ))}
+                {concepts.length &&
+                  concepts.map(elem => (
+                    <option value={elem.name} key={elem.name} />
+                  ))}
               </datalist>
             </label>
+            <div></div>
             <ImageUploader
               withIcon={false}
               buttonText="Upload a Picture"
