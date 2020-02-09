@@ -2,83 +2,83 @@
 @import "dimensions";
 
 .App {
-  text-align: center;
-  background-color: $bg-color;
-  font-family: "Open Sans", sans-serif;
+    text-align: center;
+    background-color: $bg-color;
+    font-family: "Open Sans", sans-serif;
 }
 
 .container {
-  background-color: white;
+    background-color: white;
 }
 
 .produce-filter-container {
-  margin-top: 24px;
-  padding: 12px 0px;
+    margin-top: 24px;
+    padding: 12px 0px;
 }
 
 .produce-filter {
-  display: flex;
-  justify-content: flex-start;
-  width: $master-width;
-  max-width: 90%;
-  margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    width: $master-width;
+    max-width: 90%;
+    margin: 0 auto;
 
-  overflow-x: scroll;
+    overflow-x: scroll;
 }
 
 .produce-category {
-  display: block;
-  margin-right: 16px;
+    display: block;
+    margin-right: 16px;
 
-  font-size: 14px;
-  color: $btn-grey;
-  background-color: $bg-color;
-  border-radius: 50px;
-  padding: 8px 16px;
-  white-space: nowrap;
+    font-size: 14px;
+    color: $btn-grey;
+    background-color: $bg-color;
+    border-radius: 50px;
+    padding: 8px 16px;
+    white-space: nowrap;
 
-  font-weight: 800;
-  text-transform: uppercase;
+    font-weight: 800;
+    text-transform: uppercase;
 
-  font-family: "Open Sans", sans-serif;
+    font-family: "Open Sans", sans-serif;
 }
 
 .produce-category:hover {
-  color: white;
+    color: white;
 }
 
 // universal styles
 
 button {
-  display: inline-block;
-  border: none;
-  padding: 1rem 1.2rem;
-  margin: 0;
-  text-decoration: none;
-  background: $farmy-green;
-  color: white;
-  font-family: sans-serif;
-  font-size: 1rem;
-  cursor: pointer;
-  text-align: center;
-  transition: 250ms ease-in-out, transform 150ms ease;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+    display: inline-block;
+    border: none;
+    padding: 1rem 1.2rem;
+    margin: 0;
+    text-decoration: none;
+    background: $farmy-green;
+    color: white;
+    font-family: sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: 250ms ease-in-out, transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
 button:hover,
 button:focus {
-  background: $alt-green;
-  color: white;
+    background: $alt-green;
+    color: white;
 }
 
 button:active {
-  transform: scale(0.99);
+    transform: scale(0.99);
 }
 
 // special styles
 
 .caps {
-  text-transform: uppercase;
-  font-weight: 800;
+    text-transform: uppercase;
+    font-weight: 800;
 }

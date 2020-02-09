@@ -5,21 +5,10 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 
 import Buy from "./components/PurchaseFlow/Buy";
 import ListingList from "./components/ListingList";
-import ListingPage from "./components/ListingPage";
+// import ListingPage from "./components/ListingPage";
 import NavigationBar from "./components/NavigationBar";
 import ProduceFilter from "./components/ProduceFilter";
 import UploadForm from "./components/UploadForm";
-import data from "./dummy_data.json";
-
-function getListingById(id) {
-  let l = data.listings.find(x => x.id === id);
-  console.log(l);
-  console.log(id);
-
-  return l;
-}
-
-// import data from "./dummy_data.json";
 
 export default class App extends Component {
   constructor(props) {
@@ -27,13 +16,12 @@ export default class App extends Component {
     this.setFilter = this.setFilter.bind(this);
     this.state = {
       listings: [],
-      produceFilter: "none"
+      produceFilter: "none",
+      currentListing: {}
     };
   }
 
   componentDidMount() {
-    // var that = this;
-
     let url =
       "https://cors-anywhere.herokuapp.com/" +
       "http://farme-2020.herokuapp.com/listings";
@@ -42,22 +30,11 @@ export default class App extends Component {
         return res.json();
       })
       .then(data => {
-        console.log(data);
         this.setState({ listings: data });
       })
       .catch(error => {
         console.error(error);
       });
-  }
-
-  getCurrentListing() {
-    let url = new URL(window.location);
-    let params = new URLSearchParams(url.search);
-    let id = params.get("id");
-
-    let l = this.state.listings.find(x => x.id === id);
-
-    return l;
   }
 
   // getListings() {
@@ -71,17 +48,17 @@ export default class App extends Component {
   //   }
   // }
 
-  getCategories() {
-    let d = this.state.listings;
-    var categories = {};
+  // getCategories() {
+  //   let d = this.state.listings;
+  //   var categories = {};
 
-    d.forEach(listing => {
-      categories[listing.produce[0].name] += 1;
-    });
+  //   d.forEach(listing => {
+  //     categories[listing.produce[0].name] += 1;
+  //   });
 
-    console.log(categories);
-    return categories;
-  }
+  //   console.log(categories);
+  //   return categories;
+  // }
 
   setFilter(filter) {
     this.setState({ produceFilter: filter });
@@ -96,17 +73,18 @@ export default class App extends Component {
             <Route path="/sell">
               <UploadForm />
             </Route>
-            <Route path="/buy">
-              <Buy />
-            </Route>
-            <Route path="/listing/">
+            <Route
+              path="/buy"
+              render={() => {
+                return <Buy listings={this.state.listings} />;
+              }}
+            ></Route>
+            {/* <Route path="/listing/">
               <ListingPage {...this.getCurrentListing()} />
-            </Route>
+            </Route> */}
             <Route
               path="/browse"
               render={() => {
-                console.log(this.state.listings);
-
                 return (
                   <>
                     <ProduceFilter categories={[]} setFilter={this.setFilter} />
