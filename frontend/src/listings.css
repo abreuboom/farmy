@@ -28,6 +28,7 @@
   background-size: cover;
   border-radius: 10px;
   overflow: hidden;
+  margin-top: 24px;
   margin-bottom: 16px;
 }
 .listing img {
@@ -88,9 +89,9 @@
   padding: 1rem 1rem;
   font-size: 1.25rem;
 }
-
-.listing-button {
+.listing-button a {
   color: white;
+  padding: 0;
 }
 
 /*# sourceMappingURL=listings.css.map */
