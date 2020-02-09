@@ -20,7 +20,7 @@ export default class Buy extends Component {
               <p id="distance"><float>0.1</float> mi</p>
             </p>
             <p id="tags">Tags:
-              <span className="produce-category name"> Veggies</span>
+              <span className="produce-category name">Veggies</span>
             </p>
 
           </div>
@@ -36,7 +36,7 @@ export default class Buy extends Component {
             <p>Jack</p>
           </div>
           <div className ="contact-seller">
-            <span id="contactBox">Contact Seller</span>
+            <a href="http://example.com"><span id="contactBox">Contact Seller</span></a>
           </div>
 
         </div>
