@@ -135,33 +135,33 @@ async function seed(knex) {
       username: "test2"
     })
   )[0].id;
-  await knex("Listing").insert([{
-      quantity: 1,
-      units: "count",
-      img_link: "#",
-      price: 1,
-      lister: user1,
-      produce: prod1,
-      title: "test title 1"
-    },
-    {
-      quantity: 1,
-      units: "count",
-      img_link: "#",
-      price: 1,
-      lister: user1,
-      produce: prod2,
-      title: "test title 2"
-    },
-    {
-      quantity: 10,
-      units: "lbs",
-      img_link: "#",
-      price: 12,
-      lister: user2,
-      produce: prod2,
-      title: "Test title 3"
-    }
+  await knex("Listing").insert([
+    //   quantity: 1,
+    //   units: "count",
+    //   img_link: "#",
+    //   price: 1,
+    //   lister: user1,
+    //   produce: prod1,
+    //   title: "test title 1"
+    // },
+    // {
+    //   quantity: 1,
+    //   units: "count",
+    //   img_link: "#",
+    //   price: 1,
+    //   lister: user1,
+    //   produce: prod2,
+    //   title: "test title 2"
+    // },
+    // {
+    //   quantity: 10,
+    //   units: "lbs",
+    //   img_link: "#",
+    //   price: 12,
+    //   lister: user2,
+    //   produce: prod2,
+    //   title: "Test title 3"
+    // }
   ]);
 
   let prod3 = (
