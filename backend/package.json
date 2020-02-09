@@ -8,6 +8,7 @@
     "dev": "concurrently \"tsc -watch\" \"nodemon ./build/main.js\"",
     "prov": "knex migrate:latest && knex seed:run"
   },
+  "proxy": "http://farme-2020.herokuapp.com",
   "author": "Jeong Yeon Cho",
   "license": "MIT",
   "devDependencies": {

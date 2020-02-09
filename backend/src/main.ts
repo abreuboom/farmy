@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
   res.send("abc");
 });
 
-app.get("/listings", async (req, res) => {
+app.get("/api/listings", async (req, res) => {
   let data = await db("Listing").select("*");
   res.send(
     await Promise.all(
@@ -35,23 +35,31 @@ app.get("/listings", async (req, res) => {
   );
 });
 
-app.post("/listings", async ({ body }, res) => {
+app.post("/api/listings", async ({ body }, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  console.log(body);
+
   try {
     let data = (await db("Listing").insert(body, "*"))[0];
+    console.log(data);
+
     await db("Produce")
-      .where({ produce_id: body.produce_id })
+      .where({ produce_id: data.produce })
       .increment("count", 1);
     res.send(data);
   } catch (E) {
+    console.log(E);
+    res.status(400);
     res.send(E);
   }
 });
 
-app.get("/users", async (req, res) => {
+app.get("/api/users", async (req, res) => {
   res.send(await db("User").select("*"));
 });
 
-app.post("/users", async ({ body }, res) => {
+app.post("/api/users", async ({ body }, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
   let { address, ...rest } = body;
 
   let addr_id: number | undefined = undefined;
@@ -70,7 +78,7 @@ app.post("/users", async ({ body }, res) => {
   }
 });
 
-app.get("/requests", async (req, res) => {
+app.get("/api/requests", async (req, res) => {
   let data = await db("Request").select("*");
   res.send(
     await Promise.all(
@@ -90,12 +98,12 @@ app.get("/requests", async (req, res) => {
   );
 });
 
-app.get("/produce", async (req, res) => {
+app.get("/api/produce", async (req, res) => {
   let data = await db("Produce").select("*");
   res.send(data);
 });
 
-app.get("/categories", async (req, res) => {
+app.get("/api/categories", async (req, res) => {
   let data = await db("Category").select("*");
   res.send(data);
 });

@@ -80,7 +80,7 @@ app.use(body_parser_1.default.json());
 app.get("/", function (req, res) {
     res.send("abc");
 });
-app.get("/listings", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+app.get("/api/listings", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var data, _a, _b;
     return __generator(this, function (_c) {
         switch (_c.label) {
@@ -114,34 +114,41 @@ app.get("/listings", function (req, res) { return __awaiter(void 0, void 0, void
         }
     });
 }); });
-app.post("/listings", function (_a, res) {
+app.post("/api/listings", function (_a, res) {
     var body = _a.body;
     return __awaiter(void 0, void 0, void 0, function () {
         var data, E_1;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 3, , 4]);
-                    return [4 /*yield*/, db("Listing").insert(body, "*")];
+                    res.setHeader("Access-Control-Allow-Origin", "*");
+                    console.log(body);
+                    _b.label = 1;
                 case 1:
-                    data = (_b.sent())[0];
-                    return [4 /*yield*/, db("Produce")
-                            .where({ produce_id: body.produce_id })
-                            .increment("count", 1)];
+                    _b.trys.push([1, 4, , 5]);
+                    return [4 /*yield*/, db("Listing").insert(body, "*")];
                 case 2:
+                    data = (_b.sent())[0];
+                    console.log(data);
+                    return [4 /*yield*/, db("Produce")
+                            .where({ produce_id: data.produce })
+                            .increment("count", 1)];
+                case 3:
                     _b.sent();
                     res.send(data);
-                    return [3 /*break*/, 4];
-                case 3:
+                    return [3 /*break*/, 5];
+                case 4:
                     E_1 = _b.sent();
+                    console.log(E_1);
+                    res.status(400);
                     res.send(E_1);
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     });
 });
-app.get("/users", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+app.get("/api/users", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, _b;
     return __generator(this, function (_c) {
         switch (_c.label) {
@@ -154,13 +161,14 @@ app.get("/users", function (req, res) { return __awaiter(void 0, void 0, void 0,
         }
     });
 }); });
-app.post("/users", function (_a, res) {
+app.post("/api/users", function (_a, res) {
     var body = _a.body;
     return __awaiter(void 0, void 0, void 0, function () {
         var address, rest, addr_id, _b, _c, e_1;
         return __generator(this, function (_d) {
             switch (_d.label) {
                 case 0:
+                    res.setHeader("Access-Control-Allow-Origin", "*");
                     address = body.address, rest = __rest(body, ["address"]);
                     addr_id = undefined;
                     _d.label = 1;
@@ -188,7 +196,7 @@ app.post("/users", function (_a, res) {
         });
     });
 });
-app.get("/requests", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+app.get("/api/requests", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var data, _a, _b;
     return __generator(this, function (_c) {
         switch (_c.label) {
@@ -222,7 +230,7 @@ app.get("/requests", function (req, res) { return __awaiter(void 0, void 0, void
         }
     });
 }); });
-app.get("/produce", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+app.get("/api/produce", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var data;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -234,7 +242,7 @@ app.get("/produce", function (req, res) { return __awaiter(void 0, void 0, void 
         }
     });
 }); });
-app.get("/categories", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+app.get("/api/categories", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var data;
     return __generator(this, function (_a) {
         switch (_a.label) {
