@@ -8,11 +8,9 @@
   background-color: white;
 }
 
-.nav-bar {
-  padding-bottom: 10px;
-}
-.nav-bar h1 {
-  color: #80db55;
+.produce-filter-container {
+  margin-top: 24px;
+  padding: 12px 0px;
 }
 
 .produce-filter {
@@ -27,14 +25,18 @@
 .produce-category {
   display: block;
   margin-right: 16px;
-}
-.produce-category p {
   font-size: 14px;
   color: #c2c2c2;
   background-color: #f1f1f1;
   border-radius: 50px;
   padding: 8px 16px;
   white-space: nowrap;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.produce-category:hover {
+  color: white;
 }
 
 button {
@@ -49,14 +51,15 @@ button {
   font-size: 1rem;
   cursor: pointer;
   text-align: center;
-  transition: background 250ms ease-in-out, transform 150ms ease;
+  transition: 250ms ease-in-out, transform 150ms ease;
   -webkit-appearance: none;
   -moz-appearance: none;
 }
 
 button:hover,
 button:focus {
-  background: #80db55;
+  background: #66b147;
+  color: white;
 }
 
 button:active {

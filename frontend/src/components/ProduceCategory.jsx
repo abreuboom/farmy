@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 
-export default class ProduceCategory extends Component {
+export default class cProduceCategory extends Component {
   render() {
-    return (
-      <div className="produce-category">
-        <p className="caps">{this.props.name}</p>
-      </div>
-    );
+    return <button className="produce-category">{this.props.name}</button>;
   }
 }

@@ -8,7 +8,7 @@ export default class ListingList extends Component {
   listings = this.props.listings;
   render() {
     return (
-      <div className="listings-list-container container">
+      <div className="container">
         <div className="listings-container">
           <p className="listings-title">Produce near you</p>
           <div className="listing-list">

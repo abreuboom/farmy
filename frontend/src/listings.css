@@ -1,8 +1,5 @@
-.listings-list-container {
-  margin-top: 25px;
-}
-
 .listings-container {
+  position: relative;
   width: 600px;
   max-width: 90%;
   left: 0;
@@ -16,7 +13,6 @@
 
 .listings-title {
   font-size: 1.5rem;
-  padding-top: 25px;
 }
 
 .listing-list {
@@ -91,6 +87,10 @@
   border-radius: 50%;
   padding: 1rem 1rem;
   font-size: 1.25rem;
+}
+
+.listing-button {
+  color: white;
 }
 
 /*# sourceMappingURL=listings.css.map */
