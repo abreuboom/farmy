@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"tsc -watch\" \"nodemon ./build/main.js\"",
-    "prov": "knex migrate:latest && knex seed:run"
+    "prov": "knex migrate:latest"
   },
   "proxy": "http://farme-2020.herokuapp.com",
   "author": "Jeong Yeon Cho",

@@ -47,25 +47,28 @@ export default class UploadForm extends Component {
     uploadImg(this.state.picture).then(snapshot => {
       console.log(snapshot.metadata.fullPath);
       let url = "api/listings";
-      axios
-        .post(url, {
-          price,
-          title,
-          quantity,
-          units,
-          produce: this.state.produceList.find(elem => elem.name === produce)
-            ? this.state.produceList.find(elem => elem.name === produce)
-                .produce_id
-            : produce,
-          lister: 1,
-          img_link: snapshot.metadata.fullPath
-        })
-        .then(res => {
-          console.log(res);
-        })
-        .catch(e => {
-          console.log(e);
-        });
+      axios.get("/api/users", { params: { username: "test1" } }).then(data => {
+        let lister = data.data.id;
+        axios
+          .post(url, {
+            price,
+            title,
+            quantity,
+            units,
+            produce: this.state.produceList.find(elem => elem.name === produce)
+              ? this.state.produceList.find(elem => elem.name === produce)
+                  .produce_id
+              : produce,
+            lister,
+            img_link: snapshot.metadata.fullPath
+          })
+          .then(res => {
+            console.log(res);
+          })
+          .catch(e => {
+            console.log(e.response);
+          });
+      });
     });
 
     console.log(this.state);

@@ -31,7 +31,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://farme-2020.herokuapp.com",
+  "proxy": "https://localhost:8000",
   "eslintConfig": {
     "extends": "react-app"
   },
