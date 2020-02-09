@@ -6,22 +6,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./css/pf.css";
 import { observer } from "mobx-react";
 
-import { locationStore } from "../../stores/LocationStore";
 class Buy extends Component {
   constructor(props) {
     super(props);
   }
   componentDidMount() {
     console.log(this.props);
-    setTimeout(() => {
-      locationStore
-        .calculateDistanceFromOther(this.props.lister.username)
-        .then(dist => {
-          this.setState({
-            distance: dist
-          });
-        });
-    }, 200);
   }
 
   render() {
@@ -68,10 +58,6 @@ class Buy extends Component {
                   " " +
                   this.props.lister.last_name}
               </p>
-              <br />
-              {locationStore.calculatedDistance > 0 && (
-                <p>{locationStore.calculatedDistance.toFixed(2)} miles away</p>
-              )}
             </div>
             <div className="contact-seller">
               <a

@@ -11,12 +11,10 @@ import ProduceFilter from "./components/ProduceFilter";
 import UploadForm from "./components/UploadForm";
 import axios from "axios";
 import { userStore } from "./stores/UserStore";
-import { locationStore } from "./stores/LocationStore";
 
 export default class App extends Component {
   constructor(props) {
     super(props);
-    locationStore.getLocation();
 
     this.setFilter = this.setFilter.bind(this);
     this.state = {
