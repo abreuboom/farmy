@@ -1,7 +1,9 @@
 import "./css/pf.css";
 
 import React, { Component } from "react";
-
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./css/pf.css"
 export default class Buy extends Component {
   render() {
     let { listing } = this.props;
@@ -27,11 +29,11 @@ export default class Buy extends Component {
               </p>
               <p id="tags">
                 Tags:
-                <span className="produce-category" id="veggies">
+                <span className="produce-category.name">
                   {" "}
                   Veggies
                 </span>
-                <span className="produce-category" id="tomato">
+                <span className="produce-category.name">
                   {" "}
                   Tomato{" "}
                 </span>
@@ -47,6 +49,7 @@ export default class Buy extends Component {
             <hr></hr>
             <div className="buy-seller">
               <p id="title">Seller Info</p>
+              <FontAwesomeIcon id ="pp" icon={faUserCircle}/>
               <p>Jack</p>
             </div>
             <div className="contact-seller">
