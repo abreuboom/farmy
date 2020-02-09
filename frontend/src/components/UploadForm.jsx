@@ -1,11 +1,11 @@
 import "../form.css";
 
 import React, { Component } from "react";
-
-import axios from "axios";
-import ImageUploader from "react-images-upload";
-import uuidv4 from "uuid/v4";
 import { imagesRef, uploadImg } from "../actions/storage";
+
+import ImageUploader from "react-images-upload";
+import axios from "axios";
+import uuidv4 from "uuid/v4";
 
 export default class UploadForm extends Component {
   constructor(props) {
@@ -57,11 +57,12 @@ export default class UploadForm extends Component {
             ? this.state.produceList.find(elem => elem.name === produce)
                 .produce_id
             : produce,
-          lister: 1,
+          lister: 17,
           img_link: snapshot.metadata.fullPath
         })
         .then(res => {
           console.log(res);
+          this.props.getData();
         })
         .catch(e => {
           console.log(e);

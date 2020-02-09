@@ -23,12 +23,15 @@ export default class App extends Component {
   }
 
   componentDidMount() {
+    this.getData();
+  }
+
+  getData = () => {
     const pre = "https://cors-anywhere.herokuapp.com/";
     const urls = [
       "http://farme-2020.herokuapp.com/api/listings",
       "http://farme-2020.herokuapp.com/api/produce"
     ];
-
     Promise.all(urls.map(url => fetch(pre + url).then(res => res.json())))
       .then(data => {
         console.log(data);
@@ -38,7 +41,7 @@ export default class App extends Component {
       .catch(error => {
         console.error(error);
       });
-  }
+  };
 
   // componentDidUpdate() {
   //   this.setState({ currentListing: this.getCurrentListing });
@@ -88,7 +91,7 @@ export default class App extends Component {
           <NavigationBar />
           <Switch>
             <Route path="/sell">
-              <UploadForm />
+              <UploadForm getData={this.getData} />
             </Route>
             <Route
               path="/buy/:id"
