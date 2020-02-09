@@ -87,8 +87,8 @@ export default class UploadForm extends Component {
             </label>
 
             <ImageUploader
-              withIcon={true}
-              buttonText="Choose images"
+              withIcon={false}
+              buttonText="Upload a Picture"
               onChange={this.onDrop}
               imgExtension={[".jpg", ".png, .heic"]}
               maxFileSize={5242880}

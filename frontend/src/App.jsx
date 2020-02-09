@@ -16,21 +16,24 @@ export default class App extends Component {
     this.setFilter = this.setFilter.bind(this);
     this.state = {
       listings: [],
+      produce: [],
       produceFilter: "none",
       currentListing: 0
     };
   }
 
   componentDidMount() {
-    let url =
-      "https://cors-anywhere.herokuapp.com/" +
-      "http://farme-2020.herokuapp.com/api/listings";
-    fetch(url)
-      .then(res => {
-        return res.json();
-      })
+    const pre = "https://cors-anywhere.herokuapp.com/";
+    const urls = [
+      "http://farme-2020.herokuapp.com/api/listings",
+      "http://farme-2020.herokuapp.com/api/produce"
+    ];
+
+    Promise.all(urls.map(url => fetch(pre + url).then(res => res.json())))
       .then(data => {
-        this.setState({ listings: data });
+        console.log(data);
+
+        this.setState({ listings: data[0], produce: data[1] });
       })
       .catch(error => {
         console.error(error);
@@ -72,7 +75,6 @@ export default class App extends Component {
     console.log(id);
 
     return parseInt(id);
-    // let currentListing = listings.find(x => x.offer_id === parseInt(id));
   }
 
   setFilter(filter) {
@@ -111,7 +113,10 @@ export default class App extends Component {
               render={() => {
                 return (
                   <>
-                    <ProduceFilter categories={[]} setFilter={this.setFilter} />
+                    <ProduceFilter
+                      categories={this.state.produce}
+                      setFilter={this.setFilter}
+                    />
 
                     <ListingList listings={this.state.listings} />
                   </>
