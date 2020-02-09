@@ -2,9 +2,14 @@
 
 module.exports = {
   development: {
-    client: "sqlite3",
+    client: "postgresql",
     connection: {
-      filename: "./database/dev.sqlite3"
+      user: "root",
+      password: "mysecretpassword",
+
+      host: "192.168.99.100",
+      port: 5432,
+      database: "root"
     },
     useNullAsDefault: true
   },

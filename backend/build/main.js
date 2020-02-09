@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,6 +46,17 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -52,16 +74,7 @@ var knex_1 = __importDefault(require("knex"));
 // @ts-ignore
 var knexConfig = __importStar(require("../knexfile"));
 require("dotenv").config();
-var db;
-if (process.env.NODE_ENV != "development") {
-    db = knex_1.default({
-        client: "pg",
-        connection: process.env.DATABASE_URL
-    });
-}
-else {
-    db = knex_1.default(knexConfig.development);
-}
+var db = knex_1.default(knexConfig[process.env.NODE_ENV]);
 var app = express_1.default();
 app.use(body_parser_1.default.json());
 app.get("/", function (req, res) {
@@ -85,7 +98,7 @@ app.get("/listings", function (req, res) { return __awaiter(void 0, void 0, void
                                 case 1:
                                     produce = _a.sent();
                                     return [4 /*yield*/, db("User")
-                                            .select("*")
+                                            .select(["username"])
                                             .where({ id: elem.lister })];
                                 case 2:
                                     lister = _a.sent();
@@ -101,6 +114,33 @@ app.get("/listings", function (req, res) { return __awaiter(void 0, void 0, void
         }
     });
 }); });
+app.post("/listings", function (_a, res) {
+    var body = _a.body;
+    return __awaiter(void 0, void 0, void 0, function () {
+        var data, E_1;
+        return __generator(this, function (_b) {
+            switch (_b.label) {
+                case 0:
+                    _b.trys.push([0, 3, , 4]);
+                    return [4 /*yield*/, db("Listing").insert(body, "*")];
+                case 1:
+                    data = (_b.sent())[0];
+                    return [4 /*yield*/, db("Produce")
+                            .where({ produce_id: body.produce_id })
+                            .increment("count", 1)];
+                case 2:
+                    _b.sent();
+                    res.send(data);
+                    return [3 /*break*/, 4];
+                case 3:
+                    E_1 = _b.sent();
+                    res.send(E_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
+            }
+        });
+    });
+});
 app.get("/users", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var _a, _b;
     return __generator(this, function (_c) {
@@ -114,6 +154,40 @@ app.get("/users", function (req, res) { return __awaiter(void 0, void 0, void 0,
         }
     });
 }); });
+app.post("/users", function (_a, res) {
+    var body = _a.body;
+    return __awaiter(void 0, void 0, void 0, function () {
+        var address, rest, addr_id, _b, _c, e_1;
+        return __generator(this, function (_d) {
+            switch (_d.label) {
+                case 0:
+                    address = body.address, rest = __rest(body, ["address"]);
+                    addr_id = undefined;
+                    _d.label = 1;
+                case 1:
+                    _d.trys.push([1, 5, , 6]);
+                    if (!(typeof address == "object")) return [3 /*break*/, 3];
+                    return [4 /*yield*/, db("Address").insert(address, "address_id")];
+                case 2:
+                    addr_id = (_d.sent())[0];
+                    _d.label = 3;
+                case 3:
+                    _c = (_b = res).send;
+                    return [4 /*yield*/, db("User").insert(__assign(__assign({}, rest), { address_id: addr_id }), "*")];
+                case 4:
+                    _c.apply(_b, [(_d.sent())[0]]);
+                    return [3 /*break*/, 6];
+                case 5:
+                    e_1 = _d.sent();
+                    console.log(e_1);
+                    res.status(400);
+                    res.send(e_1);
+                    return [3 /*break*/, 6];
+                case 6: return [2 /*return*/];
+            }
+        });
+    });
+});
 app.get("/requests", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var data, _a, _b;
     return __generator(this, function (_c) {
@@ -127,7 +201,7 @@ app.get("/requests", function (req, res) { return __awaiter(void 0, void 0, void
                         return __generator(this, function (_a) {
                             switch (_a.label) {
                                 case 0: return [4 /*yield*/, db("User")
-                                        .select("*")
+                                        .select("username")
                                         .where({ id: elem.requester })];
                                 case 1:
                                     requester = _a.sent();
@@ -144,6 +218,30 @@ app.get("/requests", function (req, res) { return __awaiter(void 0, void 0, void
                     }); }))];
             case 2:
                 _b.apply(_a, [_c.sent()]);
+                return [2 /*return*/];
+        }
+    });
+}); });
+app.get("/produce", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var data;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, db("Produce").select("*")];
+            case 1:
+                data = _a.sent();
+                res.send(data);
+                return [2 /*return*/];
+        }
+    });
+}); });
+app.get("/categories", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var data;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, db("Category").select("*")];
+            case 1:
+                data = _a.sent();
+                res.send(data);
                 return [2 /*return*/];
         }
     });
