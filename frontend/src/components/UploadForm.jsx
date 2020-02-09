@@ -56,6 +56,9 @@ export default class UploadForm extends Component {
           lister: 27,
           img_link: snapshot.metadata.fullPath
         })
+        .then(res => {
+          console.log(res);
+        })
         .catch(e => {
           console.log(e);
         });

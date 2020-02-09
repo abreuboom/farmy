@@ -34,7 +34,7 @@ export default class App extends Component {
   componentDidMount() {
     // var that = this;
 
-    let url = "/listings";
+    let url = "api/listings";
     fetch(url)
       .then(res => {
         return res.json();
